@@ -9,20 +9,19 @@
         <el-form-item label="网站名称" prop="name">
           <el-input v-model="ruleForm.name" />
         </el-form-item>
-        <el-form-item label="网站分类" prop="region">
-          <el-select v-model="ruleForm.region" placeholder="请选择网站分类">
-            <el-option label="区域一" value="shanghai" />
-            <el-option label="区域二" value="beijing" />
+        <el-form-item label="网站分类" prop="category">
+          <el-select v-model="ruleForm.category" placeholder="请选择网站分类">
+            <el-option v-for="item in categoryOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-             <el-form-item label="网站链接" prop="name">
-          <el-input v-model="ruleForm.name" />
+        <el-form-item label="网站链接" prop="website">
+          <el-input v-model="ruleForm.website" />
         </el-form-item>
-               <el-form-item label="网站LOGO" prop="name">
-          <el-input v-model="ruleForm.name" />
+        <el-form-item label="网站LOGO" prop="logo">
+          <el-input v-model="ruleForm.logo" />
         </el-form-item>
-        <el-form-item label="网站描述" prop="desc">
-          <el-input v-model="ruleForm.desc" type="textarea" />
+        <el-form-item label="网站描述" prop="describe">
+          <el-input v-model="ruleForm.describe" type="textarea" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
@@ -50,60 +49,50 @@ export default {
       rules: {
         name: [{
           required: true,
-          message: '请输入活动名称',
+          message: '请输入网站名称',
           trigger: 'blur'
-        },
-        {
-          min: 3,
-          max: 5,
-          message: '长度在 3 到 5 个字符',
-          trigger: 'blur'
-        }
-        ],
-        region: [{
+        }],
+        category: [{
           required: true,
-          message: '请选择活动区域',
+          message: '请选择网站分类',
           trigger: 'change'
         }],
-        date1: [{
-          type: 'date',
+        website: [{
           required: true,
-          message: '请选择日期',
-          trigger: 'change'
-        }],
-        date2: [{
-          type: 'date',
-          required: true,
-          message: '请选择时间',
-          trigger: 'change'
-        }],
-        type: [{
-          type: 'array',
-          required: true,
-          message: '请至少选择一个活动性质',
-          trigger: 'change'
-        }],
-        resource: [{
-          required: true,
-          message: '请选择活动资源',
-          trigger: 'change'
-        }],
-        desc: [{
-          required: true,
-          message: '请填写活动形式',
+          message: '请输入网站链接',
           trigger: 'blur'
         }]
-      }
+      },
+      categoryOptions: [{
+        value: '产品-新品推荐',
+        label: '产品-新品推荐'
+      }, {
+        value: '产品-产品资讯',
+        label: '产品-产品资讯'
+      }, {
+        value: '产品-原型工具',
+        label: '产品-原型工具'
+      }, {
+        value: '产品-思维导图',
+        label: '产品-思维导图'
+      }, {
+        value: '产品-协同工作',
+        label: '产品-协同工作'
+      }]
     }
   },
   methods: {
     submitForm(formName) {
-      apiAdmin.postMap().then(res=>{
-        console.log(res)
-      })
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          apiAdmin.postMap(this.ruleForm).then(res => {
+            if (res.state === 'ok') {
+              this.$notify.success({
+                title: '成功',
+                message: `添加网站《${this.ruleForm.name}》成功`
+              })
+            }
+          })
         } else {
           console.log('error submit!!')
           return false

@@ -56,10 +56,10 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/front-end',
     component: Layout,
-    redirect: '/example/recommendation',
-    name: 'Example',
+    redirect: '/front-end/recommendation',
+    name: 'Front-end',
     meta: { title: '前端', icon: 'example' },
     children: [
       {
@@ -121,6 +121,216 @@ export const constantRoutes = [
         name: 'BuildTool',
         component: () => import('@/views/buildTool/index'),
         meta: { title: '前端-构建工具', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
+    path: '/back-end',
+    component: Layout,
+    redirect: '/back-end/recommendation',
+    name: 'Back-end',
+    meta: { title: '后端', icon: 'example' },
+    children: [
+      {
+        path: 'recommendation',
+        name: 'Recommendation',
+        component: () => import('@/views/recommendation/index'),
+        meta: { title: '后端-热门推荐', icon: 'tree' }
+      },
+      {
+        path: 'frontFrame',
+        name: 'FrontFrame',
+        component: () => import('@/views/frontFrame/index'),
+        meta: { title: '后端-后端框架', icon: 'tree' }
+      },
+      {
+        path: 'forumCommunity',
+        name: 'ForumCommunity',
+        component: () => import('@/views/forumCommunity/index'),
+        meta: { title: '后端-论坛社区', icon: 'table' }
+      },
+      {
+        path: 'learningPlatform',
+        name: 'LearningPlatform',
+        component: () => import('@/views/learningPlatform/index'),
+        meta: { title: '后端-学习平台', icon: 'tree' }
+      },
+      {
+        path: 'onlineProgramming',
+        name: 'OnlineProgramming',
+        component: () => import('@/views/onlineProgramming/index'),
+        meta: { title: '后端-在线编程', icon: 'table' }
+      },
+      {
+        path: 'personalFramework',
+        name: 'PersonalFramework',
+        component: () => import('@/views/personalFramework/index'),
+        meta: { title: '后端-个人框架', icon: 'tree' }
+      },
+      {
+        path: 'codeHosting',
+        name: 'CodeHosting',
+        component: () => import('@/views/codeHosting/index'),
+        meta: { title: '后端-代码托管', icon: 'table' }
+      },
+      {
+        path: 'inspectionTest',
+        name: 'InspectionTest',
+        component: () => import('@/views/inspectionTest/index'),
+        meta: { title: '后端-检查测试', icon: 'tree' }
+      },
+      {
+        path: 'contentManagement',
+        name: 'ContentManagement',
+        component: () => import('@/views/contentManagement/index'),
+        meta: { title: '后端-内容管理', icon: 'table' }
+      },
+      {
+        path: 'buildTool',
+        name: 'BuildTool',
+        component: () => import('@/views/buildTool/index'),
+        meta: { title: '后端-构建工具', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
+    path: '/design',
+    component: Layout,
+    redirect: '/design/recommendation',
+    name: 'Design',
+    meta: { title: '设计', icon: 'example' },
+    children: [
+      {
+        path: 'recommendation',
+        name: 'Recommendation',
+        component: () => import('@/views/design/recommendation/index'),
+        meta: { title: '设计-热门推荐', icon: 'tree' }
+      },
+      {
+        path: 'inspiration ',
+        name: 'Inspiration',
+        component: () => import('@/views/design/inspiration/index'),
+        meta: { title: '设计-灵感采集', icon: 'tree' }
+      },
+      {
+        path: 'interaction',
+        name: 'Interaction',
+        component: () => import('@/views/design/interaction/index'),
+        meta: { title: '设计-界面交互', icon: 'table' }
+      },
+      {
+        path: 'designSpecifications',
+        name: 'DesignSpecifications',
+        component: () => import('@/views/design/designSpecifications/index'),
+        meta: { title: '设计-设计规范', icon: 'tree' }
+      },
+      {
+        path: 'onlineTools',
+        name: 'OnlineTools',
+        component: () => import('@/views/design/onlineTools/index'),
+        meta: { title: '设计-在线工具', icon: 'table' }
+      },
+      {
+        path: 'icon',
+        name: 'Icon',
+        component: () => import('@/views/design/icon/index'),
+        meta: { title: '设计-icon图标', icon: 'tree' }
+      },
+      {
+        path: 'designMaterial',
+        name: 'DesignMaterial',
+        component: () => import('@/views/design/designMaterial/index'),
+        meta: { title: '设计-设计素材', icon: 'table' }
+      },
+      {
+        path: 'galleryMaterial',
+        name: 'GalleryMaterial',
+        component: () => import('@/views/design/galleryMaterial/index'),
+        meta: { title: '设计-图库素材', icon: 'tree' }
+      },
+      {
+        path: 'colourAssortment',
+        name: 'ColourAssortment',
+        component: () => import('@/views/design/colourAssortment/index'),
+        meta: { title: '设计-颜色搭配', icon: 'table' }
+      },
+      {
+        path: 'fontGlyph',
+        name: 'FontGlyph',
+        component: () => import('@/views/design/fontGlyph/index'),
+        meta: { title: '设计-字体字形', icon: 'tree' }
+      },
+      {
+        path: 'learningTutorial',
+        name: 'LearningTutorial',
+        component: () => import('@/views/design/learningTutorial/index'),
+        meta: { title: '设计-学习教程', icon: 'table' }
+      },
+      {
+        path: 'designTeam',
+        name: 'DesignTeam',
+        component: () => import('@/views/design/designTeam/index'),
+        meta: { title: '设计-设计团队', icon: 'tree' }
+      }
+    ]
+  },
+
+  {
+    path: '/product',
+    component: Layout,
+    redirect: '/product/recommendation',
+    name: 'Product',
+    meta: { title: '产品', icon: 'example' },
+    children: [
+      {
+        path: 'recommendation',
+        name: 'Recommendation',
+        component: () => import('@/views/product/recommendation/index'),
+        meta: { title: '产品-热门推荐', icon: 'tree' }
+      },
+      {
+        path: 'productInformation ',
+        name: 'ProductInformation',
+        component: () => import('@/views/product/productInformation/index'),
+        meta: { title: '产品-产品资讯', icon: 'tree' }
+      },
+      {
+        path: 'prototypeTool',
+        name: 'PrototypeTool',
+        component: () => import('@/views/product/prototypeTool/index'),
+        meta: { title: '产品-原型工具', icon: 'table' }
+      },
+      {
+        path: 'mindMap',
+        name: 'MindMap',
+        component: () => import('@/views/product/mindMap/index'),
+        meta: { title: '产品-思维导图', icon: 'tree' }
+      },
+      {
+        path: 'teamwork',
+        name: 'Teamwork',
+        component: () => import('@/views/product/teamwork/index'),
+        meta: { title: '产品-协同工作', icon: 'table' }
+      },
+      {
+        path: 'documentEditing',
+        name: 'DocumentEditing',
+        component: () => import('@/views/product/documentEditing/index'),
+        meta: { title: '产品-文档编辑', icon: 'tree' }
+      },
+      {
+        path: 'diskStorage',
+        name: 'DiskStorage',
+        component: () => import('@/views/product/diskStorage/index'),
+        meta: { title: '产品-云盘储存', icon: 'table' }
+      },
+      {
+        path: 'interestingProducts',
+        name: 'InterestingProducts',
+        component: () => import('@/views/product/interestingProducts/index'),
+        meta: { title: '产品-趣味产品', icon: 'tree' }
       }
     ]
   },

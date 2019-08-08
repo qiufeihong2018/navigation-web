@@ -35,6 +35,8 @@
 
 <script>
 import * as apiAdmin from '@/api/admin'
+import router from '@/router'
+
 export default {
   name: 'Dashboard',
   data() {
@@ -63,23 +65,25 @@ export default {
           trigger: 'blur'
         }]
       },
-      categoryOptions: [{
-        value: '产品-新品推荐',
-        label: '产品-新品推荐'
-      }, {
-        value: '产品-产品资讯',
-        label: '产品-产品资讯'
-      }, {
-        value: '产品-原型工具',
-        label: '产品-原型工具'
-      }, {
-        value: '产品-思维导图',
-        label: '产品-思维导图'
-      }, {
-        value: '产品-协同工作',
-        label: '产品-协同工作'
-      }]
+      categoryOptions: []
     }
+  },
+  created() {
+    const routes = router.options.routes
+    for (let i = 0; i < routes.length; i++) {
+      const children = routes[i].children
+      for (const j in children) {
+        const obj = {
+          value: '',
+          label: ''
+        }
+        obj.value = children[j].meta.title
+        obj.label = children[j].meta.title
+
+        this.categoryOptions.push(obj)
+      }
+    }
+    this.categoryOptions.shift()
   },
   methods: {
     submitForm(formName) {

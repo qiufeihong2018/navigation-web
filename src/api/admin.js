@@ -17,7 +17,7 @@ export function postMap(data) {
 
 export function putMap(id, data) {
   return request({
-    url: `/admin${id}`,
+    url: `/admin/${id}`,
     method: 'put',
     data
   })
@@ -25,7 +25,7 @@ export function putMap(id, data) {
 
 export function deleteMap(id) {
   return request({
-    url: `/admin${id}`,
+    url: `/admin/${id}`,
     method: 'delete'
   })
 }

@@ -65,61 +65,61 @@ export const constantRoutes = [
       {
         path: 'recommendation',
         name: 'Recommendation',
-        component: () => import('@/views/recommendation/index'),
+        component: () => import('@/views/front-end/recommendation/index'),
         meta: { title: '前端-热门推荐', icon: 'tree' }
       },
       {
         path: 'frontFrame',
         name: 'FrontFrame',
-        component: () => import('@/views/frontFrame/index'),
+        component: () => import('@/views/front-end/frontFrame/index'),
         meta: { title: '前端-前端框架', icon: 'tree' }
       },
       {
         path: 'forumCommunity',
         name: 'ForumCommunity',
-        component: () => import('@/views/forumCommunity/index'),
+        component: () => import('@/views/front-end/forumCommunity/index'),
         meta: { title: '前端-论坛社区', icon: 'table' }
       },
       {
         path: 'learningPlatform',
         name: 'LearningPlatform',
-        component: () => import('@/views/learningPlatform/index'),
+        component: () => import('@/views/front-end/learningPlatform/index'),
         meta: { title: '前端-学习平台', icon: 'tree' }
       },
       {
         path: 'onlineProgramming',
         name: 'OnlineProgramming',
-        component: () => import('@/views/onlineProgramming/index'),
+        component: () => import('@/views/front-end/onlineProgramming/index'),
         meta: { title: '前端-在线编程', icon: 'table' }
       },
       {
         path: 'personalFramework',
         name: 'PersonalFramework',
-        component: () => import('@/views/personalFramework/index'),
+        component: () => import('@/views/front-end/personalFramework/index'),
         meta: { title: '前端-个人框架', icon: 'tree' }
       },
       {
         path: 'codeHosting',
         name: 'CodeHosting',
-        component: () => import('@/views/codeHosting/index'),
+        component: () => import('@/views/front-end/codeHosting/index'),
         meta: { title: '前端-代码托管', icon: 'table' }
       },
       {
         path: 'inspectionTest',
         name: 'InspectionTest',
-        component: () => import('@/views/inspectionTest/index'),
+        component: () => import('@/views/front-end/inspectionTest/index'),
         meta: { title: '前端-检查测试', icon: 'tree' }
       },
       {
         path: 'contentManagement',
         name: 'ContentManagement',
-        component: () => import('@/views/contentManagement/index'),
+        component: () => import('@/views/front-end/contentManagement/index'),
         meta: { title: '前端-内容管理', icon: 'table' }
       },
       {
         path: 'buildTool',
         name: 'BuildTool',
-        component: () => import('@/views/buildTool/index'),
+        component: () => import('@/views/front-end/buildTool/index'),
         meta: { title: '前端-构建工具', icon: 'tree' }
       }
     ]
@@ -135,61 +135,61 @@ export const constantRoutes = [
       {
         path: 'recommendation',
         name: 'Recommendation',
-        component: () => import('@/views/recommendation/index'),
+        component: () => import('@/views/back-end/recommendation/index'),
         meta: { title: '后端-热门推荐', icon: 'tree' }
       },
       {
         path: 'frontFrame',
         name: 'FrontFrame',
-        component: () => import('@/views/frontFrame/index'),
+        component: () => import('@/views/back-end/frontFrame/index'),
         meta: { title: '后端-后端框架', icon: 'tree' }
       },
       {
         path: 'forumCommunity',
         name: 'ForumCommunity',
-        component: () => import('@/views/forumCommunity/index'),
+        component: () => import('@/views/back-end/forumCommunity/index'),
         meta: { title: '后端-论坛社区', icon: 'table' }
       },
       {
         path: 'learningPlatform',
         name: 'LearningPlatform',
-        component: () => import('@/views/learningPlatform/index'),
+        component: () => import('@/views/back-end/learningPlatform/index'),
         meta: { title: '后端-学习平台', icon: 'tree' }
       },
       {
         path: 'onlineProgramming',
         name: 'OnlineProgramming',
-        component: () => import('@/views/onlineProgramming/index'),
+        component: () => import('@/views/back-end/onlineProgramming/index'),
         meta: { title: '后端-在线编程', icon: 'table' }
       },
       {
         path: 'personalFramework',
         name: 'PersonalFramework',
-        component: () => import('@/views/personalFramework/index'),
+        component: () => import('@/views/back-end/personalFramework/index'),
         meta: { title: '后端-个人框架', icon: 'tree' }
       },
       {
         path: 'codeHosting',
         name: 'CodeHosting',
-        component: () => import('@/views/codeHosting/index'),
+        component: () => import('@/views/back-end/codeHosting/index'),
         meta: { title: '后端-代码托管', icon: 'table' }
       },
       {
         path: 'inspectionTest',
         name: 'InspectionTest',
-        component: () => import('@/views/inspectionTest/index'),
+        component: () => import('@/views/back-end/inspectionTest/index'),
         meta: { title: '后端-检查测试', icon: 'tree' }
       },
       {
         path: 'contentManagement',
         name: 'ContentManagement',
-        component: () => import('@/views/contentManagement/index'),
+        component: () => import('@/views/back-end/contentManagement/index'),
         meta: { title: '后端-内容管理', icon: 'table' }
       },
       {
         path: 'buildTool',
         name: 'BuildTool',
-        component: () => import('@/views/buildTool/index'),
+        component: () => import('@/views/back-end/buildTool/index'),
         meta: { title: '后端-构建工具', icon: 'tree' }
       }
     ]
@@ -335,6 +335,63 @@ export const constantRoutes = [
     ]
   },
 
+  {
+    path: '/operate',
+    component: Layout,
+    redirect: '/operate/domainName',
+    name: 'Operate',
+    meta: { title: '运营', icon: 'example' },
+    children: [
+      {
+        path: 'domainName',
+        name: 'DomainName',
+        component: () => import('@/views/operate/domainName/index'),
+        meta: { title: '运营-域名注册', icon: 'tree' }
+      },
+      {
+        path: 'dataAnalysis ',
+        name: 'DataAnalysis',
+        component: () => import('@/views/operate/dataAnalysis/index'),
+        meta: { title: '运营-数据分析', icon: 'tree' }
+      },
+      {
+        path: 'dataTools',
+        name: 'DataTools',
+        component: () => import('@/views/operate/dataTools/index'),
+        meta: { title: '运营-数据工具', icon: 'table' }
+      },
+      {
+        path: 'dataCollection',
+        name: 'DataCollection',
+        component: () => import('@/views/operate/dataCollection/index'),
+        meta: { title: '运营-数据收集', icon: 'tree' }
+      },
+      {
+        path: 'mediaPlatform',
+        name: 'MediaPlatform',
+        component: () => import('@/views/operate/mediaPlatform/index'),
+        meta: { title: '运营-新媒平台', icon: 'table' }
+      },
+      {
+        path: 'mediaTools',
+        name: 'MediaTools',
+        component: () => import('@/views/operate/mediaTools/index'),
+        meta: { title: '运营-新媒工具', icon: 'tree' }
+      },
+      {
+        path: 'websiteInclusion',
+        name: 'WebsiteInclusion',
+        component: () => import('@/views/operate/websiteInclusion/index'),
+        meta: { title: '运营-网站收录', icon: 'table' }
+      },
+      {
+        path: 'ASOOptimization',
+        name: 'ASOOptimization',
+        component: () => import('@/views/operate/ASOOptimization/index'),
+        meta: { title: '运营-ASO优化', icon: 'tree' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

@@ -58,72 +58,72 @@ export const constantRoutes = [
   {
     path: '/front-end',
     component: Layout,
-    redirect: '/front-end/recommendation',
+    redirect: '/front-end/recommendationFront-end',
     name: 'Front-end',
     meta: { title: '前端', icon: 'example' },
     children: [
       {
-        path: 'recommendation',
+        path: 'recommendationFront-end',
         name: 'RecommendationFront-end',
         component: () => import('@/views/front-end/recommendation/index'),
         meta: { title: '前端-热门推荐', icon: 'tree' }
       },
       {
-        path: 'frontFrame',
+        path: 'frontFrameFront-end',
         name: 'FrontFrameFront-end',
         component: () => import('@/views/front-end/frontFrame/index'),
         meta: { title: '前端-前端框架', icon: 'tree' }
       },
       {
-        path: 'forumCommunity',
+        path: 'forumCommunityFront-end',
         name: 'ForumCommunityFront-end',
         component: () => import('@/views/front-end/forumCommunity/index'),
         meta: { title: '前端-论坛社区', icon: 'table' }
       },
       {
-        path: 'learningPlatform',
+        path: 'learningPlatformFront-end',
         name: 'LearningPlatformFront-end',
         component: () => import('@/views/front-end/learningPlatform/index'),
         meta: { title: '前端-学习平台', icon: 'tree' }
       },
       {
-        path: 'onlineProgramming',
+        path: 'onlineProgrammingFront-end',
         name: 'OnlineProgrammingFront-end',
         component: () => import('@/views/front-end/onlineProgramming/index'),
         meta: { title: '前端-在线编程', icon: 'table' }
       },
       {
-        path: 'javaScriptFramework',
+        path: 'javaScriptFrameworkFront-end',
         name: 'JavaScriptFrameworkFront-end',
         component: () => import('@/views/front-end/javaScriptFramework/index'),
         meta: { title: '前端-JavaScript框架', icon: 'tree' }
       },
       {
-        path: 'codeHosting',
+        path: 'codeHostingFront-end',
         name: 'CodeHostingFront-end',
         component: () => import('@/views/front-end/codeHosting/index'),
         meta: { title: '前端-代码托管', icon: 'table' }
       },
       {
-        path: 'inspectionTest',
+        path: 'inspectionTestFront-end',
         name: 'InspectionTestFront-end',
         component: () => import('@/views/front-end/inspectionTest/index'),
         meta: { title: '前端-检查测试', icon: 'tree' }
       },
       {
-        path: 'CSSFramework',
+        path: 'CSSFrameworkFront-end',
         name: 'CSSFrameworkFront-end',
         component: () => import('@/views/front-end/CSSFramework/index'),
         meta: { title: '前端-CSS框架', icon: 'table' }
       },
       {
-        path: 'techDoc',
+        path: 'techDocFront-end',
         name: 'TechDocFront-end',
         component: () => import('@/views/front-end/techDoc/index'),
         meta: { title: '前端-技术文档', icon: 'table' }
       },
       {
-        path: 'buildTool',
+        path: 'buildToolFront-end',
         name: 'BuildToolFront-end',
         component: () => import('@/views/front-end/buildTool/index'),
         meta: { title: '前端-构建工具', icon: 'tree' }
@@ -134,66 +134,66 @@ export const constantRoutes = [
   {
     path: '/back-end',
     component: Layout,
-    redirect: '/back-end/recommendation',
+    redirect: '/back-end/recommendationBack-end',
     name: 'Back-end',
     meta: { title: '后端', icon: 'example' },
     children: [
       {
-        path: 'recommendation',
-        name: 'Recommendation',
+        path: 'recommendationBack-end',
+        name: 'RecommendationBack-end',
         component: () => import('@/views/back-end/recommendation/index'),
         meta: { title: '后端-热门推荐', icon: 'tree' }
       },
       {
-        path: 'frontFrame',
+        path: 'frontFrameBack-end',
         name: 'FrontFrameBack-end',
         component: () => import('@/views/back-end/frontFrame/index'),
         meta: { title: '后端-后端框架', icon: 'tree' }
       },
       {
-        path: 'forumCommunity',
+        path: 'forumCommunityBack-end',
         name: 'ForumCommunityBack-end',
         component: () => import('@/views/back-end/forumCommunity/index'),
         meta: { title: '后端-论坛社区', icon: 'table' }
       },
       {
-        path: 'learningPlatform',
+        path: 'learningPlatformBack-end',
         name: 'LearningPlatformBack-end',
         component: () => import('@/views/back-end/learningPlatform/index'),
         meta: { title: '后端-学习平台', icon: 'tree' }
       },
       {
-        path: 'onlineProgramming',
+        path: 'onlineProgrammingBack-end',
         name: 'OnlineProgrammingBack-end',
         component: () => import('@/views/back-end/onlineProgramming/index'),
         meta: { title: '后端-在线编程', icon: 'table' }
       },
       {
-        path: 'personalFramework',
+        path: 'personalFrameworkBack-end',
         name: 'PersonalFrameworkBack-end',
         component: () => import('@/views/back-end/personalFramework/index'),
         meta: { title: '后端-个人框架', icon: 'tree' }
       },
       {
-        path: 'codeHosting',
+        path: 'codeHostingBack-end',
         name: 'CodeHostingBack-end',
         component: () => import('@/views/back-end/codeHosting/index'),
         meta: { title: '后端-代码托管', icon: 'table' }
       },
       {
-        path: 'inspectionTest',
+        path: 'inspectionTestBack-end',
         name: 'InspectionTestBack-end',
         component: () => import('@/views/back-end/inspectionTest/index'),
         meta: { title: '后端-检查测试', icon: 'tree' }
       },
       {
-        path: 'contentManagement',
+        path: 'contentManagementBack-end',
         name: 'ContentManagementBack-end',
         component: () => import('@/views/back-end/contentManagement/index'),
         meta: { title: '后端-内容管理', icon: 'table' }
       },
       {
-        path: 'buildTool',
+        path: 'buildToolBack-end',
         name: 'BuildToolBack-end',
         component: () => import('@/views/back-end/buildTool/index'),
         meta: { title: '后端-构建工具', icon: 'tree' }
@@ -204,12 +204,12 @@ export const constantRoutes = [
   {
     path: '/design',
     component: Layout,
-    redirect: '/design/recommendation',
+    redirect: '/design/recommendationDesign',
     name: 'Design',
     meta: { title: '设计', icon: 'example' },
     children: [
       {
-        path: 'recommendation',
+        path: 'recommendationDesign',
         name: 'RecommendationDesign',
         component: () => import('@/views/design/recommendation/index'),
         meta: { title: '设计-热门推荐', icon: 'tree' }
@@ -286,13 +286,13 @@ export const constantRoutes = [
   {
     path: '/product',
     component: Layout,
-    redirect: '/product/recommendation',
+    redirect: '/product/recommendationProduct',
     name: 'Product',
     meta: { title: '产品', icon: 'example' },
     children: [
       {
-        path: 'recommendation',
-        name: 'Recommendation',
+        path: 'recommendationProduct',
+        name: 'RecommendationProduct',
         component: () => import('@/views/product/recommendation/index'),
         meta: { title: '产品-热门推荐', icon: 'tree' }
       },

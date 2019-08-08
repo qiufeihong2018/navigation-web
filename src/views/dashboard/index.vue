@@ -11,7 +11,7 @@
         </el-form-item>
         <el-form-item label="网站分类" prop="category">
           <el-select v-model="ruleForm.category" placeholder="请选择网站分类">
-            <el-option v-for="item in categoryOptions" :key="item.value" :label="item.label" :value="item.value" />
+            <el-option v-for="(item,key) in categoryOptions" :key="key" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
         <el-form-item label="网站链接" prop="website">
@@ -77,7 +77,7 @@ export default {
           value: '',
           label: ''
         }
-        obj.value = children[j].meta.title
+        obj.value = children[j].path
         obj.label = children[j].meta.title
 
         this.categoryOptions.push(obj)
@@ -108,6 +108,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -121,4 +122,5 @@ export default {
       line-height: 46px;
     }
   }
+
 </style>

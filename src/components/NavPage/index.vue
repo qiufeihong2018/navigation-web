@@ -1,19 +1,25 @@
 <template>
   <div class="app-container">
     <el-row :gutter="20">
-      <el-col v-for="(i,key) in navArr" :key="key" :span="6">
+      <el-col v-for="(nav,key) in navArr" :key="key" :span="6">
         <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '10px' }">
-            <img :src="i.logo" class="image">
-            <div style="padding: 14px;">
-              <div>网站名称:{{ i.name }}</div>
-              <div>网站链接:{{ i.website }}</div>
-              <div>网站描述:{{ i.describe }}</div>
-              <div class="bottom clearfix">
-                <time class="time">创建时间：{{ i.created_at|timeTrans}}</time>
-                <el-button type="text" class="button" @click="openDialog(i)">编辑</el-button>
-                <el-button type="text" class="button" @click="deleteMap(i)">删除</el-button>
-              </div>
+          <el-card :body-style="{ padding: '10px' }" shadow="hover">
+            <img :src="nav.logo" class="image">
+            <el-form label-width="80px">
+              <el-form-item label="网站名称">
+                {{ nav.name }}
+              </el-form-item>
+              <el-form-item label="网站链接">
+                <a class="font-website" target="_blank" :href="nav.website">{{ nav.website }}</a>
+              </el-form-item>
+              <el-form-item label="网站描述">
+                <div>{{ nav.describe }}</div>
+              </el-form-item>
+            </el-form>
+            <div class="bottom clearfix">
+              <time class="time">创建时间：{{ nav.created_at|timeTrans}}</time>
+              <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
+              <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
             </div>
           </el-card>
         </div>
@@ -95,20 +101,31 @@
         })
       },
       deleteMap(nav) {
-        apiAdmin.deleteMap(nav._id).then(res => {
-          if (res.state === 'ok') {
-            this.$notify.success({
-              title: '成功',
-              message: `删除网站《${nav.name}》成功！`
-            })
-          } else {
-            this.$notify.error({
-              title: '失败',
-              message: `删除网站《${nav.name}》失败！`
-            })
-          }
-          this.getMap()
-        })
+        this.$confirm('此操作将永久删除该网站, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          apiAdmin.deleteMap(nav._id).then(res => {
+            if (res.state === 'ok') {
+              this.$notify.success({
+                title: '成功',
+                message: `删除网站《${nav.name}》成功！`
+              })
+            } else {
+              this.$notify.error({
+                title: '失败',
+                message: `删除网站《${nav.name}》失败！`
+              })
+            }
+            this.getMap()
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
       },
       putMap(form) {
         this.dialogFormVisible = false
@@ -148,7 +165,8 @@
   }
 
   .image {
-    width: 20%;
+    width: 80px;
+    height: 80px;
     display: block;
   }
 
@@ -161,4 +179,11 @@
   .clearfix:after {
     clear: both
   }
+
+
+  .font-website:hover {
+    color: #409EFF;
+  }
+
+  
 </style>

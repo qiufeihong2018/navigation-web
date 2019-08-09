@@ -1,27 +1,11 @@
 <template>
-  <div class="app-container" />
+  <NavPage />
 </template>
-
 <script>
-import { getMap } from '@/api/admin'
-
-export default {
-  data() {
-    return {
-      list: null,
-      listLoading: true
-    }
-  },
-  created() {
-    this.fetchData()
-  },
-  methods: {
-    fetchData() {
-      this.listLoading = true
-      getMap().then(res => {
-        console.log(res)
-      })
+  import NavPage from '@/components/NavPage'
+  export default {
+    components: {
+      NavPage
     }
   }
-}
 </script>

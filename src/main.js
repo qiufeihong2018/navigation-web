@@ -33,6 +33,15 @@ Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
+Vue.filter('timeTrans', function(value) {
+  if (value === '') {
+    // eslint-disable-next-line
+      return new Date().toLocaleString('chinese', {hour12: false})
+  }
+  // eslint-disable-next-line
+    return new Date(value).toLocaleString('chinese', {hour12: false})
+}
+)
 new Vue({
   el: '#app',
   router,

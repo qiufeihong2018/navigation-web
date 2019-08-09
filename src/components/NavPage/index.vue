@@ -17,7 +17,7 @@
               </el-form-item>
             </el-form>
             <div class="bottom clearfix">
-              <time class="time">创建时间：{{ nav.created_at|timeTrans}}</time>
+              <time class="time">创建时间：{{ nav.created_at|timeTrans }}</time>
               <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
               <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
             </div>
@@ -51,101 +51,120 @@
         <el-button type="primary" @click="putMap(form)">确 定</el-button>
       </div>
     </el-dialog>
+    <el-tooltip placement="top" content="返回顶部">
+
+      <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="50" transition-name="fade" />
+    </el-tooltip>
 
   </div>
 </template>
 
 <script>
-  import * as apiAdmin from '@/api/admin'
-  import router from '@/router'
+import BackToTop from '@/components/BackToTop'
 
-  export default {
-    data() {
-      return {
-        navArr: [],
-        dialogFormVisible: false,
-        form: {},
-        formLabelWidth: '120px',
-        categoryOptions: []
+import * as apiAdmin from '@/api/admin'
+import router from '@/router'
+
+export default {
+  components: {
+    BackToTop
+  },
+  data() {
+    return {
+      navArr: [],
+      dialogFormVisible: false,
+      form: {},
+      formLabelWidth: '120px',
+      categoryOptions: [],
+      // customizable button style, show/hide critical point, return position
+      myBackToTopStyle: {
+        right: '50px',
+        bottom: '50px',
+        width: '40px',
+        height: '40px',
+        'border-radius': '4px',
+        'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
+        background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
       }
-    },
-    created() {
-      this.getMap()
+    }
+  },
+  created() {
+    this.getMap()
 
-      const routes = router.options.routes
-      for (let i = 0; i < routes.length; i++) {
-        const children = routes[i].children
-        for (const j in children) {
-          const obj = {
-            value: '',
-            label: ''
-          }
-          obj.value = children[j].path
-          obj.label = children[j].meta.title
-
-          this.categoryOptions.push(obj)
+    const routes = router.options.routes
+    for (let i = 0; i < routes.length; i++) {
+      const children = routes[i].children
+      for (const j in children) {
+        const obj = {
+          value: '',
+          label: ''
         }
+        obj.value = children[j].path
+        obj.label = children[j].meta.title
+
+        this.categoryOptions.push(obj)
       }
-      this.categoryOptions.shift()
+    }
+    this.categoryOptions.shift()
+  },
+  methods: {
+    openDialog(nav) {
+      this.dialogFormVisible = true
+      this.form = nav
     },
-    methods: {
-      openDialog(nav) {
-        this.dialogFormVisible = true
-        this.form = nav
-      },
-      getMap() {
-        apiAdmin.getMap().then(res => {
-          this.navArr = res.data.filter(item => {
-            return item.category.toLowerCase() === router.currentRoute.name.toLowerCase()
-          })
+    getMap() {
+      apiAdmin.getMap().then(res => {
+        this.navArr = res.data.filter(item => {
+          return item.category.toLowerCase() === router.currentRoute.name.toLowerCase()
         })
-      },
-      deleteMap(nav) {
-        this.$confirm('此操作将永久删除该网站, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          apiAdmin.deleteMap(nav._id).then(res => {
-            if (res.state === 'ok') {
-              this.$notify.success({
-                title: '成功',
-                message: `删除网站《${nav.name}》成功！`
-              })
-            } else {
-              this.$notify.error({
-                title: '失败',
-                message: `删除网站《${nav.name}》失败！`
-              })
-            }
-            this.getMap()
-          })
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });
-        });
-      },
-      putMap(form) {
-        this.dialogFormVisible = false
-        apiAdmin.putMap(form._id, form).then(res => {
+      })
+    },
+    deleteMap(nav) {
+      this.$confirm('此操作将永久删除该网站, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        apiAdmin.deleteMap(nav._id).then(res => {
           if (res.state === 'ok') {
             this.$notify.success({
               title: '成功',
-              message: `编辑网站《${form.name}》成功！`
+              message: `删除网站《${nav.name}》成功！`
             })
           } else {
             this.$notify.error({
               title: '失败',
-              message: `编辑网站《${form.name}》失败！`
+              message: `删除网站《${nav.name}》失败！`
             })
           }
           this.getMap()
         })
-      }
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
+    putMap(form) {
+      this.dialogFormVisible = false
+      apiAdmin.putMap(form._id, form).then(res => {
+        if (res.state === 'ok') {
+          this.$notify.success({
+            title: '成功',
+            message: `编辑网站《${form.name}》成功！`
+          })
+        } else {
+          this.$notify.error({
+            title: '失败',
+            message: `编辑网站《${form.name}》失败！`
+          })
+        }
+        this.getMap()
+      })
     }
   }
+}
 </script>
 
 <style>
@@ -180,10 +199,7 @@
     clear: both
   }
 
-
   .font-website:hover {
     color: #409EFF;
   }
-
-  
 </style>

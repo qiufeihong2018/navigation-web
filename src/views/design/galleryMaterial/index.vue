@@ -2,10 +2,10 @@
   <NavPage />
 </template>
 <script>
-  import NavPage from '@/components/NavPage'
-  export default {
-    components: {
-      NavPage
-    }
+import NavPage from '@/components/NavPage'
+export default {
+  components: {
+    NavPage
   }
+}
 </script>

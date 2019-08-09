@@ -95,10 +95,10 @@ export default {
                 title: '成功',
                 message: `添加网站《${this.ruleForm.name}》成功`
               })
-            }else{
+            } else {
               this.$notify.error({
-                title:'失败',
-                message:`添加网站《${this.ruleForm.name}》失败`
+                title: '失败',
+                message: `添加网站《${this.ruleForm.name}》失败`
               })
             }
           })

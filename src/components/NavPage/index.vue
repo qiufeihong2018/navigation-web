@@ -63,6 +63,8 @@
 import BackToTop from '@/components/BackToTop'
 
 import * as apiAdmin from '@/api/admin'
+import * as apiSuperAdmin from '@/api/superAdmin'
+
 import router from '@/router'
 
 export default {
@@ -105,7 +107,7 @@ export default {
         this.categoryOptions.push(obj)
       }
     }
-    this.categoryOptions.shift()
+    this.categoryOptions = this.categoryOptions.slice(3)
   },
   methods: {
     openDialog(nav) {
@@ -113,7 +115,7 @@ export default {
       this.form = nav
     },
     getMap() {
-      apiAdmin.getMap().then(res => {
+      apiSuperAdmin.getSuperMap().then(res => {
         this.navArr = res.data.filter(item => {
           return item.category.toLowerCase() === router.currentRoute.name.toLowerCase()
         })

@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 
-export function getMap() {
+export function getSuperMap() {
   return request({
     url: '/superAdmin',
     method: 'get'
   })
 }
 
-export function postMap(id, data) {
+export function postSuperMap(id, data) {
   return request({
     url: `/superAdmin/${id}`,
     method: 'post',
@@ -15,7 +15,7 @@ export function postMap(id, data) {
   })
 }
 
-export function putMap(id, data) {
+export function putSuperMap(id, data) {
   return request({
     url: `/superAdmin/${id}`,
     method: 'put',
@@ -23,7 +23,7 @@ export function putMap(id, data) {
   })
 }
 
-export function deleteMap(id) {
+export function deleteSuperMap(id) {
   return request({
     url: `/superAdmin/${id}`,
     method: 'delete'

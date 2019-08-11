@@ -1,8 +1,8 @@
 <template>
-  <div class="dashboard-container">
+  <div class="submit-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>添加网站</span>
+        <span>提交网站</span>
         <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
       </div>
       <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
@@ -24,7 +24,7 @@
           <el-input v-model="ruleForm.describe" type="textarea" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+          <el-button type="primary" @click="submitForm('ruleForm')">立即提交</el-button>
           <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -38,7 +38,7 @@ import * as apiAdmin from '@/api/admin'
 import router from '@/router'
 
 export default {
-  name: 'Dashboard',
+  name: 'Submit',
   data() {
     return {
       ruleForm: {
@@ -83,7 +83,7 @@ export default {
         this.categoryOptions.push(obj)
       }
     }
-    this.categoryOptions.shift()
+    this.categoryOptions = this.categoryOptions.slice(3)
   },
   methods: {
     submitForm(formName) {
@@ -93,12 +93,12 @@ export default {
             if (res.state === 'ok') {
               this.$notify.success({
                 title: '成功',
-                message: `添加网站《${this.ruleForm.name}》成功`
+                message: `提交网站《${this.ruleForm.name}》成功`
               })
             } else {
               this.$notify.error({
                 title: '失败',
-                message: `添加网站《${this.ruleForm.name}》失败`
+                message: `提交网站《${this.ruleForm.name}》失败`
               })
             }
           })
@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .dashboard {
+  .submit {
     &-container {
       margin: 30px;
     }

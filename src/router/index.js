@@ -45,14 +45,14 @@ export const constantRoutes = [{
 {
   path: '/',
   component: Layout,
-  redirect: '/oprate',
+  redirect: '/submit',
   children: [{
-    path: 'oprate',
-    name: 'Oprate',
-    component: () => import('@/views/oprate/index'),
+    path: 'submit',
+    name: 'Submit',
+    component: () => import('@/views/submit/index'),
     meta: {
       title: '操作',
-      icon: 'example'
+      icon: 'submit'
     }
   }]
 },
@@ -63,7 +63,7 @@ export const constantRoutes = [{
   name: 'SuperAdmin',
   meta: {
     title: '超管',
-    icon: 'example'
+    icon: 'superAdmin'
   },
   children: [{
     path: 'interactive',
@@ -71,7 +71,7 @@ export const constantRoutes = [{
     component: () => import('@/views/superAdmin/interactive/index'),
     meta: {
       title: '超管-交互',
-      icon: 'tree'
+      icon: 'interactive'
     }
   },
   {
@@ -80,7 +80,7 @@ export const constantRoutes = [{
     component: () => import('@/views/superAdmin/handle/index'),
     meta: {
       title: '超管-操作',
-      icon: 'tree'
+      icon: 'handle'
     }
   }
   ]
@@ -92,7 +92,7 @@ export const constantRoutes = [{
   name: 'Front-end',
   meta: {
     title: '前端',
-    icon: 'example'
+    icon: 'front-end'
   },
   children: [{
     path: 'recommendationFront-end',
@@ -100,7 +100,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/recommendation/index'),
     meta: {
       title: '前端-热门推荐',
-      icon: 'tree'
+      icon: 'recommendation'
     }
   },
   {
@@ -109,7 +109,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/frontFrame/index'),
     meta: {
       title: '前端-前端框架',
-      icon: 'tree'
+      icon: 'frontFrame'
     }
   },
   {
@@ -118,7 +118,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/forumCommunity/index'),
     meta: {
       title: '前端-论坛社区',
-      icon: 'table'
+      icon: 'forumCommunity'
     }
   },
   {
@@ -127,7 +127,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/learningPlatform/index'),
     meta: {
       title: '前端-学习平台',
-      icon: 'tree'
+      icon: 'learningPlatform'
     }
   },
   {
@@ -136,7 +136,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/onlineProgramming/index'),
     meta: {
       title: '前端-在线编程',
-      icon: 'table'
+      icon: 'onlineProgramming'
     }
   },
   {
@@ -145,7 +145,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/javaScriptFramework/index'),
     meta: {
       title: '前端-JavaScript框架',
-      icon: 'tree'
+      icon: 'javaScriptFramework'
     }
   },
   {
@@ -154,7 +154,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/codeHosting/index'),
     meta: {
       title: '前端-代码托管',
-      icon: 'table'
+      icon: 'codeHosting'
     }
   },
   {
@@ -163,7 +163,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/inspectionTest/index'),
     meta: {
       title: '前端-检查测试',
-      icon: 'tree'
+      icon: 'inspectionTest'
     }
   },
   {
@@ -172,7 +172,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/CSSFramework/index'),
     meta: {
       title: '前端-CSS框架',
-      icon: 'table'
+      icon: 'CSSFramework'
     }
   },
   {
@@ -181,7 +181,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/techDoc/index'),
     meta: {
       title: '前端-技术文档',
-      icon: 'table'
+      icon: 'techDoc'
     }
   },
   {
@@ -190,7 +190,7 @@ export const constantRoutes = [{
     component: () => import('@/views/front-end/buildTool/index'),
     meta: {
       title: '前端-构建工具',
-      icon: 'tree'
+      icon: 'buildTool'
     }
   }
   ]
@@ -203,7 +203,7 @@ export const constantRoutes = [{
   name: 'Back-end',
   meta: {
     title: '后端',
-    icon: 'example'
+    icon: 'back-end'
   },
   children: [{
     path: 'recommendationBack-end',
@@ -211,7 +211,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/recommendation/index'),
     meta: {
       title: '后端-热门推荐',
-      icon: 'tree'
+      icon: 'recommendation'
     }
   },
   {
@@ -220,7 +220,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/frontFrame/index'),
     meta: {
       title: '后端-后端框架',
-      icon: 'tree'
+      icon: 'frontFrame'
     }
   },
   {
@@ -229,7 +229,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/forumCommunity/index'),
     meta: {
       title: '后端-论坛社区',
-      icon: 'table'
+      icon: 'forumCommunity'
     }
   },
   {
@@ -238,7 +238,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/learningPlatform/index'),
     meta: {
       title: '后端-学习平台',
-      icon: 'tree'
+      icon: 'learningPlatform'
     }
   },
   {
@@ -247,7 +247,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/onlineProgramming/index'),
     meta: {
       title: '后端-在线编程',
-      icon: 'table'
+      icon: 'onlineProgramming'
     }
   },
   {
@@ -256,7 +256,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/personalFramework/index'),
     meta: {
       title: '后端-个人框架',
-      icon: 'tree'
+      icon: 'personalFramework'
     }
   },
   {
@@ -265,7 +265,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/codeHosting/index'),
     meta: {
       title: '后端-代码托管',
-      icon: 'table'
+      icon: 'codeHosting'
     }
   },
   {
@@ -274,7 +274,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/inspectionTest/index'),
     meta: {
       title: '后端-检查测试',
-      icon: 'tree'
+      icon: 'inspectionTest'
     }
   },
   {
@@ -283,7 +283,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/contentManagement/index'),
     meta: {
       title: '后端-内容管理',
-      icon: 'table'
+      icon: 'contentManagement'
     }
   },
   {
@@ -292,7 +292,7 @@ export const constantRoutes = [{
     component: () => import('@/views/back-end/buildTool/index'),
     meta: {
       title: '后端-构建工具',
-      icon: 'tree'
+      icon: 'buildTool'
     }
   }
   ]
@@ -305,7 +305,7 @@ export const constantRoutes = [{
   name: 'Design',
   meta: {
     title: '设计',
-    icon: 'example'
+    icon: 'design'
   },
   children: [{
     path: 'recommendationDesign',
@@ -313,7 +313,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/recommendation/index'),
     meta: {
       title: '设计-热门推荐',
-      icon: 'tree'
+      icon: 'recommendation'
     }
   },
   {
@@ -322,7 +322,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/inspiration/index'),
     meta: {
       title: '设计-灵感采集',
-      icon: 'tree'
+      icon: 'inspiration'
     }
   },
   {
@@ -331,7 +331,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/interaction/index'),
     meta: {
       title: '设计-界面交互',
-      icon: 'table'
+      icon: 'interaction'
     }
   },
   {
@@ -340,7 +340,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/designSpecifications/index'),
     meta: {
       title: '设计-设计规范',
-      icon: 'tree'
+      icon: 'designSpecifications'
     }
   },
   {
@@ -349,7 +349,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/onlineTools/index'),
     meta: {
       title: '设计-在线工具',
-      icon: 'table'
+      icon: 'onlineTools'
     }
   },
   {
@@ -358,7 +358,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/icon/index'),
     meta: {
       title: '设计-icon图标',
-      icon: 'tree'
+      icon: 'icon'
     }
   },
   {
@@ -367,7 +367,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/designMaterial/index'),
     meta: {
       title: '设计-设计素材',
-      icon: 'table'
+      icon: 'designMaterial'
     }
   },
   {
@@ -376,7 +376,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/galleryMaterial/index'),
     meta: {
       title: '设计-图库素材',
-      icon: 'tree'
+      icon: 'galleryMaterial'
     }
   },
   {
@@ -385,7 +385,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/colourAssortment/index'),
     meta: {
       title: '设计-颜色搭配',
-      icon: 'table'
+      icon: 'colourAssortment'
     }
   },
   {
@@ -394,7 +394,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/fontGlyph/index'),
     meta: {
       title: '设计-字体字形',
-      icon: 'tree'
+      icon: 'fontGlyph'
     }
   },
   {
@@ -403,7 +403,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/learningTutorial/index'),
     meta: {
       title: '设计-学习教程',
-      icon: 'table'
+      icon: 'learningTutorial'
     }
   },
   {
@@ -412,7 +412,7 @@ export const constantRoutes = [{
     component: () => import('@/views/design/designTeam/index'),
     meta: {
       title: '设计-设计团队',
-      icon: 'tree'
+      icon: 'designTeam'
     }
   }
   ]
@@ -425,7 +425,7 @@ export const constantRoutes = [{
   name: 'Product',
   meta: {
     title: '产品',
-    icon: 'example'
+    icon: 'product'
   },
   children: [{
     path: 'recommendationProduct',
@@ -433,7 +433,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/recommendation/index'),
     meta: {
       title: '产品-热门推荐',
-      icon: 'tree'
+      icon: 'recommendation'
     }
   },
   {
@@ -442,7 +442,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/productInformation/index'),
     meta: {
       title: '产品-产品资讯',
-      icon: 'tree'
+      icon: 'productInformation'
     }
   },
   {
@@ -451,7 +451,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/prototypeTool/index'),
     meta: {
       title: '产品-原型工具',
-      icon: 'table'
+      icon: 'prototypeTool'
     }
   },
   {
@@ -460,7 +460,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/mindMap/index'),
     meta: {
       title: '产品-思维导图',
-      icon: 'tree'
+      icon: 'mindMap'
     }
   },
   {
@@ -469,7 +469,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/teamwork/index'),
     meta: {
       title: '产品-协同工作',
-      icon: 'table'
+      icon: 'teamwork'
     }
   },
   {
@@ -478,7 +478,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/documentEditing/index'),
     meta: {
       title: '产品-文档编辑',
-      icon: 'tree'
+      icon: 'documentEditing'
     }
   },
   {
@@ -487,7 +487,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/diskStorage/index'),
     meta: {
       title: '产品-云盘储存',
-      icon: 'table'
+      icon: 'diskStorage'
     }
   },
   {
@@ -496,7 +496,7 @@ export const constantRoutes = [{
     component: () => import('@/views/product/interestingProducts/index'),
     meta: {
       title: '产品-趣味产品',
-      icon: 'tree'
+      icon: 'interestingProducts'
     }
   }
   ]
@@ -509,7 +509,7 @@ export const constantRoutes = [{
   name: 'Operate',
   meta: {
     title: '运营',
-    icon: 'example'
+    icon: 'operate'
   },
   children: [{
     path: 'domainName',
@@ -517,7 +517,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/domainName/index'),
     meta: {
       title: '运营-域名注册',
-      icon: 'tree'
+      icon: 'domainName'
     }
   },
   {
@@ -526,7 +526,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/dataAnalysis/index'),
     meta: {
       title: '运营-数据分析',
-      icon: 'tree'
+      icon: 'dataAnalysis'
     }
   },
   {
@@ -535,7 +535,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/dataTools/index'),
     meta: {
       title: '运营-数据工具',
-      icon: 'table'
+      icon: 'dataTools'
     }
   },
   {
@@ -544,7 +544,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/dataCollection/index'),
     meta: {
       title: '运营-数据收集',
-      icon: 'tree'
+      icon: 'dataCollection'
     }
   },
   {
@@ -553,7 +553,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/mediaPlatform/index'),
     meta: {
       title: '运营-新媒平台',
-      icon: 'table'
+      icon: 'mediaPlatform'
     }
   },
   {
@@ -562,7 +562,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/mediaTools/index'),
     meta: {
       title: '运营-新媒工具',
-      icon: 'tree'
+      icon: 'mediaTools'
     }
   },
   {
@@ -571,7 +571,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/websiteInclusion/index'),
     meta: {
       title: '运营-网站收录',
-      icon: 'table'
+      icon: 'websiteInclusion'
     }
   },
   {
@@ -580,7 +580,7 @@ export const constantRoutes = [{
     component: () => import('@/views/operate/ASOOptimization/index'),
     meta: {
       title: '运营-ASO优化',
-      icon: 'tree'
+      icon: 'ASOOptimization'
     }
   }
   ]

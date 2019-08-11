@@ -45,7 +45,7 @@
 
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
+        <span> password: admin</span>
       </div>
 
     </el-form>
@@ -66,8 +66,8 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+      if (value.length < 4) {
+        callback(new Error('The password can not be less than 4 digits'))
       } else {
         callback()
       }

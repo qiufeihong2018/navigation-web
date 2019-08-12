@@ -1,14 +1,17 @@
+/* eslint-disable spaced-comment */
 import router from './router'
-import store from './store'
-import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/auth' // get token from cookie
+import {
+  getToken
+} from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
-NProgress.configure({ showSpinner: false }) // NProgress Configuration
+NProgress.configure({
+  showSpinner: false
+}) // NProgress Configuration
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -19,30 +22,55 @@ router.beforeEach(async(to, from, next) => {
 
   // determine whether the user has logged in
   const hasToken = getToken()
-
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      next({ path: '/' })
+      next({
+        path: '/'
+      })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
-        next()
-      } else {
-        try {
-          // get user info
-          await store.dispatch('user/getInfo')
+      next()
 
-          next()
-        } catch (error) {
-          // remove token and go to login page to re-login
-          await store.dispatch('user/resetToken')
-          Message.error(error || 'Has Error')
-          next(`/login?redirect=${to.path}`)
-          NProgress.done()
-        }
-      }
+      // const hasRoles = store.getters.roles && store.getters.roles.length > 0
+      // if (hasRoles) {
+      //   next()
+      // } else {
+      //   try {
+      //     // get user info
+      //     // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
+      //     const {
+      //       role
+      //     } = await store.dispatch('user/getInfo')
+
+      //     // generate accessible routes map based on roles
+      //     const accessRoutes = await store.dispatch('permission/generateRoutes', role)
+
+      //     // 动态添加导航栏时，addRoutes不生效解决
+      //     // 在addroutes前，使用router.options.routes=XXXXX的方法手动添加
+      //     for (const i in accessRoutes) {
+      //       router.options.routes.push(accessRoutes[i])
+      //     }
+
+      //     // dynamically add accessible routes
+      //     // 动态添加可访问的路由
+      //     router.addRoutes(accessRoutes)
+      //     // hack method to ensure that addRoutes is complete
+      //     // set the replace: true, so the navigation will not leave a history record
+      //     //hack方法确保addroutes完成
+      //     //设置replace:true，导航不会留下历史记录
+      //     next({
+      //       ...to,
+      //       replace: true
+      //     })
+      //   } catch (error) {
+      //     // remove token and go to login page to re-login
+      //     await store.dispatch('user/resetToken')
+      //     Message.error(error || 'Has Error')
+      //     next(`/login?redirect=${to.path}`)
+      //     NProgress.done()
+      //   }
+      // }
     }
   } else {
     /* has no token*/

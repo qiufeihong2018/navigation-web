@@ -1,18 +1,32 @@
 <template>
-  <div>
+  <div class="table-container">
     <el-table :data="tableData" stripe style="width: 100%">
-      <el-table-column prop="category" label="分类" width="200" />
-      <el-table-column prop="name" label="名字" width="200" />
-      <el-table-column prop="website" label="网站链接" width="200" />
-      <el-table-column prop="describe" label="描述" />
-      <el-table-column prop="created_at" label="创建时间" width="200" />
-      <el-table-column fixed="right" label="操作" width="200">
-        <template slot-scope="scope">
-          <el-button type="text" class="button" @click="openDialog(scope.row)">编辑</el-button>
-          <el-button type="text" class="button" @click="deleteSuperMap(scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+      <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />
+      <el-table-column prop="name" label="名字" width="200" show-overflow-tooltip />
+      <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip> <el-table-column
+                                                                                        prop="describe"
+                                                                                        label="描述"
+                                                                                        show-overflow-tooltip
+                                                                                      />
+        <el-table-column prop="created_at" label="创建时间" width="200" show-overflow-tooltip />
+        <el-table-column fixed="right" label="操作" width="200">
+          <template slot-scope="scope">
+            <el-button type="text" class="button" @click="openDialog(scope.row)">编辑</el-button>
+            <el-button type="text" class="button" @click="deleteSuperMap(scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table-column></el-table>
+    <div class="pagination-container">
+      <el-pagination
+        :current-page="currentPage"
+        :page-sizes="[100, 200, 300, 400]"
+        :page-size="100"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="400"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+      />
+    </div>
     <el-dialog title="编辑网站" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="网站名称" prop="name">
@@ -53,7 +67,9 @@ export default {
       dialogFormVisible: false,
       form: {},
       formLabelWidth: '120px',
-      categoryOptions: []
+      categoryOptions: [],
+      currentPage: 4
+
     }
   },
   created() {
@@ -127,14 +143,23 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
     }
   }
 }
-
 </script>
 <style scoped>
-  .el-table {
+  .table-container {
     margin: 20px
   }
 
+  .pagination-container {
+    margin: 10px;
+    float: right
+  }
 </style>

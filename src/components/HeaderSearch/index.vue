@@ -1,5 +1,6 @@
 <template>
   <div :class="{'show':show}" class="header-search">
+    {{ search }}
     <svg-icon class-name="search-icon" icon-class="search" @click.stop="click" />
     <el-select
       ref="headerSearchSelect"
@@ -43,7 +44,7 @@ export default {
   },
   watch: {
     routes() {
-      this.searchPool = this.generateRoutes(this.routes)
+      this.searchPool = this.generateRoutes(this.$router.options.routes)
     },
     searchPool(list) {
       this.initFuse(list)
@@ -56,7 +57,9 @@ export default {
       }
     }
   },
-
+  mounted() {
+    this.searchPool = this.generateRoutes(this.$router.options.routes)
+  },
   methods: {
     click() {
       this.show = !this.show
@@ -96,11 +99,14 @@ export default {
     },
     // Filter out the routes that can be displayed in the sidebar
     // And generate the internationalized title
+    // 过滤出可以在边栏中显示的路由
+    // 生成国际化标题
     generateRoutes(routes, basePath = '/', prefixTitle = []) {
       let res = []
 
       for (const router of routes) {
         // skip hidden router
+        // 跳过隐藏路由器
         if (router.hidden) { continue }
 
         const data = {
@@ -114,11 +120,14 @@ export default {
           if (router.redirect !== 'noRedirect') {
             // only push the routes with title
             // special case: need to exclude parent router without redirect
+            // 只推带标题的路由
+            // 特殊情况：需要在不重定向的情况下排除父路由器
             res.push(data)
           }
         }
 
         // recursive child routes
+        // 递归子路由
         if (router.children) {
           const tempRoutes = this.generateRoutes(router.children, data.path, data.title)
           if (tempRoutes.length >= 1) {

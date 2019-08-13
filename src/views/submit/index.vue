@@ -35,7 +35,6 @@
 
 <script>
 import * as apiAdmin from '@/api/admin'
-import router from '@/router'
 
 export default {
   name: 'Submit',
@@ -69,18 +68,19 @@ export default {
     }
   },
   created() {
-    const routes = router.options.routes
+    const routes = this.$router.options.routes
     for (let i = 0; i < routes.length; i++) {
-      const children = routes[i].children
-      for (const j in children) {
-        const obj = {
-          value: '',
-          label: ''
+      if (routes[i].path !== '/redirect') {
+        const children = routes[i].children
+        for (const j in children) {
+          const obj = {
+            value: '',
+            label: ''
+          }
+          obj.value = children[j].path
+          obj.label = children[j].meta.title
+          this.categoryOptions.push(obj)
         }
-        obj.value = children[j].path
-        obj.label = children[j].meta.title
-
-        this.categoryOptions.push(obj)
       }
     }
     this.categoryOptions = this.categoryOptions.slice(3)
@@ -113,7 +113,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -127,5 +126,4 @@ export default {
       line-height: 46px;
     }
   }
-
 </style>

@@ -3,19 +3,16 @@
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />
       <el-table-column prop="name" label="名字" width="200" show-overflow-tooltip />
-      <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip> <el-table-column
-                                                                                        prop="describe"
-                                                                                        label="描述"
-                                                                                        show-overflow-tooltip
-                                                                                      />
-        <el-table-column prop="created_at" label="创建时间" width="200" show-overflow-tooltip />
-        <el-table-column fixed="right" label="操作" width="200">
-          <template slot-scope="scope">
-            <el-button type="text" class="button" @click="openDialog(scope.row)">编辑</el-button>
-            <el-button type="text" class="button" @click="deleteSuperMap(scope.row)">删除</el-button>
-          </template>
-        </el-table-column>
-      </el-table-column></el-table>
+      <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip />
+      <el-table-column prop="describe" label="描述" show-overflow-tooltip />
+      <el-table-column prop="created_at" label="创建时间" width="200" show-overflow-tooltip />
+      <el-table-column fixed="right" label="操作" width="200">
+        <template slot-scope="scope">
+          <el-button type="text" class="button" @click="openDialog(scope.row)">编辑</el-button>
+          <el-button type="text" class="button" @click="deleteSuperMap(scope.row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
     <div class="pagination-container">
       <el-pagination
         :current-page="currentPage"
@@ -58,7 +55,6 @@
 
 <script>
 import * as apiSuperAdmin from '@/api/superAdmin'
-import router from '@/router'
 
 export default {
   data() {
@@ -74,18 +70,19 @@ export default {
   },
   created() {
     this.getSuperMap()
-    const routes = router.options.routes
+    const routes = this.$router.options.routes
     for (let i = 0; i < routes.length; i++) {
-      const children = routes[i].children
-      for (const j in children) {
-        const obj = {
-          value: '',
-          label: ''
+      if (routes[i].path !== '/redirect') {
+        const children = routes[i].children
+        for (const j in children) {
+          const obj = {
+            value: '',
+            label: ''
+          }
+          obj.value = children[j].path
+          obj.label = children[j].meta.title
+          this.categoryOptions.push(obj)
         }
-        obj.value = children[j].path
-        obj.label = children[j].meta.title
-
-        this.categoryOptions.push(obj)
       }
     }
     this.categoryOptions = this.categoryOptions.slice(3)

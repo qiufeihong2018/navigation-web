@@ -1,31 +1,29 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="20">
-      <el-col v-for="(nav,key) in navArr" :key="key" :span="6">
-        <div class="grid-content bg-purple">
-          <el-card :body-style="{ padding: '10px' }" shadow="hover">
-            <img :src="nav.logo" class="image">
-            <el-form label-width="80px">
-              <el-form-item label="网站名称">
-                {{ nav.name }}
-              </el-form-item>
-              <el-form-item label="网站链接">
-                <a class="font-website" target="_blank" :href="nav.website">{{ nav.website }}</a>
-              </el-form-item>
-              <el-form-item label="网站描述">
-                <div>{{ nav.describe }}</div>
-              </el-form-item>
-            </el-form>
-            <div class="bottom clearfix">
-              <time class="time">创建时间：{{ nav.created_at|timeTrans }}</time>
-              <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
-              <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
-            </div>
-          </el-card>
+    <!--   <el-row :gutter="20">
+      <el-col  :span="6">-->
+    <div v-for="(nav,key) in navArr" :key="key" class="waterfalls-flow">
+      <el-card :body-style="{ padding: '10px' }" shadow="hover">
+        <img :src="nav.logo" class="image">
+        <el-form label-width="80px">
+          <el-form-item label="网站名称">
+            {{ nav.name }}
+          </el-form-item>
+          <el-form-item label="网站链接">
+            <a class="font-website" target="_blank" :href="nav.website">{{ nav.website }}</a>
+          </el-form-item>
+          <el-form-item label="网站描述">
+            <div>{{ nav.describe }}</div>
+          </el-form-item>
+        </el-form>
+        <div class="bottom clearfix">
+          <time class="time">创建时间：{{ nav.created_at|timeTrans }}</time>
+          <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
+          <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
         </div>
-      </el-col>
+      </el-card>
+    </div>
 
-    </el-row>
     <el-dialog title="编辑网站" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="网站名称" prop="name">
@@ -53,7 +51,12 @@
     </el-dialog>
     <el-tooltip placement="top" content="返回顶部">
 
-      <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="50" transition-name="fade" />
+      <back-to-top
+        :custom-style="myBackToTopStyle"
+        :visibility-height="300"
+        :back-position="50"
+        transition-name="fade"
+      />
     </el-tooltip>
 
   </div>
@@ -64,8 +67,6 @@ import BackToTop from '@/components/BackToTop'
 
 import * as apiAdmin from '@/api/admin'
 import * as apiSuperAdmin from '@/api/superAdmin'
-
-import router from '@/router'
 
 export default {
   components: {
@@ -93,18 +94,19 @@ export default {
   created() {
     this.getMap()
 
-    const routes = router.options.routes
+    const routes = this.$router.options.routes
     for (let i = 0; i < routes.length; i++) {
-      const children = routes[i].children
-      for (const j in children) {
-        const obj = {
-          value: '',
-          label: ''
+      if (routes[i].path !== '/redirect') {
+        const children = routes[i].children
+        for (const j in children) {
+          const obj = {
+            value: '',
+            label: ''
+          }
+          obj.value = children[j].path
+          obj.label = children[j].meta.title
+          this.categoryOptions.push(obj)
         }
-        obj.value = children[j].path
-        obj.label = children[j].meta.title
-
-        this.categoryOptions.push(obj)
       }
     }
     this.categoryOptions = this.categoryOptions.slice(3)
@@ -117,7 +119,7 @@ export default {
     getMap() {
       apiSuperAdmin.getSuperMap().then(res => {
         this.navArr = res.data.filter(item => {
-          return item.category.toLowerCase() === router.currentRoute.name.toLowerCase()
+          return item.category.toLowerCase() === this.$router.currentRoute.name.toLowerCase()
         })
       })
     },

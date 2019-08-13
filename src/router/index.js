@@ -593,6 +593,102 @@ export const constantRoutes = [{
   }
   ]
 },
+
+{
+  path: '/jobs',
+  component: Layout,
+  redirect: '/jobs/recruitmentPlatform',
+  name: 'Jobs',
+  meta: {
+    title: '工作',
+    icon: 'jobs'
+  },
+  children: [{
+    path: 'recruitmentPlatform',
+    name: 'RecruitmentPlatform',
+    component: () => import('@/views/jobs/recruitmentPlatform/index'),
+    meta: {
+      title: '工作-招聘平台',
+      icon: 'recruitmentPlatform'
+    }
+  },
+  {
+    path: 'partTimeProgram',
+    name: 'PartTimeProgram',
+    component: () => import('@/views/jobs/partTimeProgram/index'),
+    meta: {
+      title: '工作-程序兼职',
+      icon: 'partTimeProgram'
+    }
+  },
+  {
+    path: 'partTimeDesign',
+    name: 'PartTimeDesign',
+    component: () => import('@/views/jobs/partTimeDesign/index'),
+    meta: {
+      title: '工作-设计兼职',
+      icon: 'partTimeDesign'
+    }
+  }
+  ]
+},
+
+{
+  path: '/geeks',
+  component: Layout,
+  redirect: '/geeks/developmentHardware',
+  name: 'Geeks',
+  meta: {
+    title: '极客',
+    icon: 'geeks'
+  },
+  children: [{
+    path: 'developmentHardware',
+    name: 'DevelopmentHardware',
+    component: () => import('@/views/geeks/developmentHardware/index'),
+    meta: {
+      title: '极客-开发硬件',
+      icon: 'developmentHardware'
+    }
+  },
+  {
+    path: 'hardwareSystem',
+    name: 'HardwareSystem',
+    component: () => import('@/views/geeks/hardwareSystem/index'),
+    meta: {
+      title: '极客-硬件系统',
+      icon: 'hardwareSystem'
+    }
+  },
+  {
+    path: 'otherTools',
+    name: 'OtherTools',
+    component: () => import('@/views/geeks/otherTools/index'),
+    meta: {
+      title: '极客-其他工具',
+      icon: 'otherTools'
+    }
+  },
+  {
+    path: 'informationInquiry',
+    name: 'InformationInquiry',
+    component: () => import('@/views/geeks/informationInquiry/index'),
+    meta: {
+      title: '极客-信息查询',
+      icon: 'informationInquiry'
+    }
+  },
+  {
+    path: 'gameSystem',
+    name: 'GameSystem',
+    component: () => import('@/views/geeks/gameSystem/index'),
+    meta: {
+      title: '极客-游戏系统',
+      icon: 'gameSystem'
+    }
+  }
+  ]
+},
 // 404 page must be placed at the end !!!
 {
   path: '*',

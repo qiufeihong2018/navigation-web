@@ -53,50 +53,7 @@ export const constantRoutes = [{
 {
   path: '/',
   component: Layout,
-  redirect: '/submit',
-  children: [{
-    path: 'submit',
-    name: 'Submit',
-    component: () => import('@/views/submit/index'),
-    meta: {
-      title: '操作',
-      icon: 'submit'
-    }
-  }]
-},
-{
-  path: '/superAdmin',
-  component: Layout,
-  redirect: '/superAdmin/interactive',
-  name: 'SuperAdmin',
-  meta: {
-    title: '超管',
-    icon: 'superAdmin'
-  },
-  children: [{
-    path: 'interactive',
-    name: 'Interactive',
-    component: () => import('@/views/superAdmin/interactive/index'),
-    meta: {
-      title: '超管-交互',
-      icon: 'interactive'
-    }
-  },
-  {
-    path: 'handle',
-    name: 'Handle',
-    component: () => import('@/views/superAdmin/handle/index'),
-    meta: {
-      title: '超管-操作',
-      icon: 'handle'
-    }
-  }
-  ]
-},
-{
-  path: '/front-end',
-  component: Layout,
-  redirect: '/front-end/recommendationFront-end',
+  redirect: '/recommendationFront-end',
   name: 'Front-end',
   meta: {
     title: '前端',
@@ -199,6 +156,15 @@ export const constantRoutes = [{
     meta: {
       title: '前端-构建工具',
       icon: 'buildTool'
+    }
+  },
+  {
+    path: '/iframeNav',
+    name: 'IframeNav',
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
     }
   }
   ]
@@ -685,6 +651,50 @@ export const constantRoutes = [{
     meta: {
       title: '极客-游戏系统',
       icon: 'gameSystem'
+    }
+  }
+  ]
+},
+
+{
+  path: '/submit',
+  component: Layout,
+  redirect: '/submit',
+  children: [{
+    path: 'submit',
+    name: 'Submit',
+    component: () => import('@/views/submit/index'),
+    meta: {
+      title: '操作',
+      icon: 'submit'
+    }
+  }]
+},
+{
+  path: '/superAdmin',
+  component: Layout,
+  redirect: '/superAdmin/interactive',
+  name: 'SuperAdmin',
+  meta: {
+    title: '超管',
+    icon: 'superAdmin'
+  },
+  children: [{
+    path: 'interactive',
+    name: 'Interactive',
+    component: () => import('@/views/superAdmin/interactive/index'),
+    meta: {
+      title: '超管-交互',
+      icon: 'interactive'
+    }
+  },
+  {
+    path: 'handle',
+    name: 'Handle',
+    component: () => import('@/views/superAdmin/handle/index'),
+    meta: {
+      title: '超管-操作',
+      icon: 'handle'
     }
   }
   ]

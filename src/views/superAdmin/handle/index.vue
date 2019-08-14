@@ -1,6 +1,9 @@
 <template>
   <div class="table-container">
-    <el-table :data="tableData" stripe style="width: 100%">
+    <el-table :data="tableData" stripe style="width: 100%" highlight-current-row>
+      <el-table-column
+        type="index"
+      />
       <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />
       <el-table-column prop="name" label="名字" width="200" show-overflow-tooltip />
       <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip />
@@ -150,7 +153,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="stylus">
   .table-container {
     margin: 20px
   }
@@ -158,5 +161,8 @@ export default {
   .pagination-container {
     margin: 10px;
     float: right
+  }
+  .el-tooltip__popper{
+    width:400px
   }
 </style>

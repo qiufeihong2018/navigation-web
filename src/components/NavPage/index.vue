@@ -1,29 +1,42 @@
 <template>
   <div class="app-container">
-    <!--   <el-row :gutter="20">
-      <el-col  :span="6">-->
-    <div v-for="(nav,key) in navArr" :key="key" class="waterfalls-flow">
-      <el-card :body-style="{ padding: '10px' }" shadow="hover">
-        <img :src="nav.logo" class="image">
-        <el-form label-width="80px">
-          <el-form-item label="网站名称">
-            {{ nav.name }}
-          </el-form-item>
-          <el-form-item label="网站链接">
-            <a class="font-website" target="_blank" :href="nav.website">{{ nav.website }}</a>
-          </el-form-item>
-          <el-form-item label="网站描述">
-            <div>{{ nav.describe }}</div>
-          </el-form-item>
-        </el-form>
-        <div class="bottom clearfix">
-          <time class="time">创建时间：{{ nav.created_at|timeTrans }}</time>
-          <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
-          <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
+    <waterfall
+      :col="col"
+      :width="itemWidth"
+      :gutter-width="gutterWidth"
+      :data="navArr"
+      @loadmore="loadmore"
+      @scroll="scroll"
+    >
+      <template>
+        <div v-for="(nav,key) in navArr" :key="key" style="margin-top: 10px;">
+          <el-card :body-style="{ padding: '10px' }" shadow="hover">
+            <img :src="nav.logo" class="image" alt="加载错误">
+            <el-form label-width="80px">
+              <el-form-item label="网站名称">
+                {{ nav.name }}
+              </el-form-item>
+              <el-form-item label="网站链接">
+                {{ currentRoute }}
+                <router-link v-if="currentRoute==='RecommendationFront-end'" class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">{{ nav.website }}
+                </router-link>
+                <router-link v-else-if="currentRoute==='RecommendationBack-end'" class="font-website" :to="{ path: 'back-end/iframeNav', query: { website: nav.website }}">{{ nav.website }}
+                </router-link>
+              </el-form-item>
+              <el-form-item label="网站描述">
+                <div>{{ nav.describe || '需要您添加网站描述' }}</div>
+              </el-form-item>
+            </el-form>
+            <div class="bottom clearfix">
+              <time class="time">创建时间：{{ nav.created_at|timeTrans }}</time>
+              <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
+              <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
+            </div>
+          </el-card>
         </div>
-      </el-card>
-    </div>
 
+      </template>
+    </waterfall>
     <el-dialog title="编辑网站" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="网站名称" prop="name">
@@ -50,7 +63,6 @@
       </div>
     </el-dialog>
     <el-tooltip placement="top" content="返回顶部">
-
       <back-to-top
         :custom-style="myBackToTopStyle"
         :visibility-height="300"
@@ -58,7 +70,6 @@
         transition-name="fade"
       />
     </el-tooltip>
-
   </div>
 </template>
 
@@ -88,12 +99,21 @@ export default {
         'border-radius': '4px',
         'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
-      }
+      },
+      col: 4,
+      currentRoute: this.$router.currentRoute.name
+    }
+  },
+  computed: {
+    itemWidth() {
+      return (150 * 0.5 * (document.documentElement.clientWidth / 375))
+    },
+    gutterWidth() {
+      return (9 * 0.5 * (document.documentElement.clientWidth / 375))
     }
   },
   created() {
     this.getMap()
-
     const routes = this.$router.options.routes
     for (let i = 0; i < routes.length; i++) {
       if (routes[i].path !== '/redirect') {
@@ -109,9 +129,16 @@ export default {
         }
       }
     }
-    this.categoryOptions = this.categoryOptions.slice(3)
+    this.categoryOptions = this.categoryOptions.slice(0, -3)
   },
   methods: {
+
+    scroll(scrollData) {
+      // console.log(scrollData)
+    },
+    loadmore(index) {
+      // console.log('没有了')
+    },
     openDialog(nav) {
       this.dialogFormVisible = true
       this.form = nav
@@ -129,34 +156,40 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        apiAdmin.deleteMap(nav._id).then(res => {
-          if (res.state === 'ok') {
-            this.$notify.success({
-              title: '成功',
-              message: `删除网站《${nav.name}》成功！`
-            })
-          } else {
-            this.$notify.error({
-              title: '失败',
-              message: `删除网站《${nav.name}》失败！`
-            })
-          }
-          this.getMap()
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
+        this.$notify.error({
+          title: '失败',
+          message: `您没有权限删除网站《${nav.name}》`
         })
       })
+      //   apiAdmin.deleteMap(nav._id).then(res => {
+      //     if (res.state === 'ok') {
+      //       this.$notify.success({
+      //         title: '成功',
+      //         message: `删除网站《${nav.name}》成功！`
+      //       })
+      //     } else {
+      //       this.$notify.error({
+      //         title: '失败',
+      //         message: `删除网站《${nav.name}》失败！`
+      //       })
+      //     }
+      //     this.getMap()
+      //   })
+      // }).catch(() => {
+      //   this.$message({
+      //     type: 'info',
+      //     message: '已取消删除'
+      //   })
+      // })
     },
     putMap(form) {
       this.dialogFormVisible = false
+      form.way = 'put'
       apiAdmin.putMap(form._id, form).then(res => {
         if (res.state === 'ok') {
           this.$notify.success({
             title: '成功',
-            message: `编辑网站《${form.name}》成功！`
+            message: `管理员会处理编辑请求！`
           })
         } else {
           this.$notify.error({
@@ -171,7 +204,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .time {
     font-size: 13px;
     color: #999;

@@ -12,6 +12,9 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+import waterfall from 'vue-waterfall2'
+Vue.use(waterfall)
+
 import '@/icons' // icon
 import '@/permission' // permission control
 
@@ -23,25 +26,32 @@ import '@/permission' // permission control
  * Currently MockJs will be used in the production environment,
  * please remove it before going online! ! !
  */
-import { mockXHR } from '../mock'
+import {
+  mockXHR
+} from '../mock'
 if (process.env.NODE_ENV === 'production') {
   mockXHR()
 }
 
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, {
+  locale
+})
 
 Vue.config.productionTip = false
 
 Vue.filter('timeTrans', function(value) {
   if (value === '') {
     // eslint-disable-next-line
-      return new Date().toLocaleString('chinese', {hour12: false})
+    return new Date().toLocaleString('chinese', {
+      hour12: false
+    })
   }
   // eslint-disable-next-line
-    return new Date(value).toLocaleString('chinese', {hour12: false})
-}
-)
+  return new Date(value).toLocaleString('chinese', {
+    hour12: false
+  })
+})
 new Vue({
   el: '#app',
   router,

@@ -83,7 +83,7 @@ export default {
         }
       }
     }
-    this.categoryOptions = this.categoryOptions.slice(3)
+    this.categoryOptions = this.categoryOptions.slice(0, -3)
   },
   methods: {
     submitForm(formName) {

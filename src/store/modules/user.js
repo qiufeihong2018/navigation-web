@@ -1,7 +1,8 @@
 import {
   login,
   logout,
-  getInfo
+  getInfo,
+  register
 } from '@/api/user'
 import {
   getToken,
@@ -67,6 +68,40 @@ const actions = {
           Notification({
             title: '失败',
             message: `${response.username}登录失败`,
+            type: 'error'
+          })
+          reject(response.err)
+        }
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // user login
+  register({
+    commit
+  }, userInfo) {
+    const {
+      username,
+      password
+    } = userInfo
+    return new Promise((resolve, reject) => {
+      register({
+        username: username.trim(),
+        password: password
+      }).then(response => {
+        if (response.username) {
+          Notification({
+            title: '成功',
+            message: `${response.username}注册成功`,
+            type: 'success'
+          })
+          resolve()
+        } else {
+          Notification({
+            title: '失败',
+            message: `${response.username}注册失败`,
             type: 'error'
           })
           reject(response.err)

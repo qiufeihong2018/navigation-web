@@ -22,7 +22,7 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
+          <router-link to="/submit/submit">
             <el-dropdown-item>Submit</el-dropdown-item>
           </router-link>
           <a target="_blank" href="https://github.com/qiufeihong2018/navigation-web">

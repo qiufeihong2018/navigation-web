@@ -160,7 +160,7 @@ export const constantRoutes = [{
   },
   {
     path: '/iframeNav',
-    name: 'IframeNav',
+    name: 'frontIframeNav',
     component: () => import('@/views/iframeNav/index'),
     meta: {
       title: '网站',
@@ -271,7 +271,7 @@ export const constantRoutes = [{
   },
   {
     path: '/back-end/iframeNav',
-    name: 'IframeNav',
+    name: 'backIframeNav',
     component: () => import('@/views/iframeNav/index'),
     meta: {
       title: '网站',
@@ -400,7 +400,7 @@ export const constantRoutes = [{
   },
   {
     path: '/design/iframeNav',
-    name: 'IframeNav',
+    name: 'designIframeNav',
     component: () => import('@/views/iframeNav/index'),
     meta: {
       title: '网站',
@@ -493,7 +493,7 @@ export const constantRoutes = [{
   },
   {
     path: '/product/iframeNav',
-    name: 'IframeNav',
+    name: 'productIframeNav',
     component: () => import('@/views/iframeNav/index'),
     meta: {
       title: '网站',
@@ -586,7 +586,7 @@ export const constantRoutes = [{
   },
   {
     path: '/operate/iframeNav',
-    name: 'IframeNav',
+    name: 'operateIframeNav',
     component: () => import('@/views/iframeNav/index'),
     meta: {
       title: '网站',
@@ -634,7 +634,7 @@ export const constantRoutes = [{
   },
   {
     path: '/jobs/iframeNav',
-    name: 'IframeNav',
+    name: 'jobsIframeNav',
     component: () => import('@/views/iframeNav/index'),
     meta: {
       title: '网站',
@@ -700,7 +700,7 @@ export const constantRoutes = [{
   },
   {
     path: '/geeks/iframeNav',
-    name: 'IframeNav',
+    name: 'geeksIframeNav',
     component: () => import('@/views/iframeNav/index'),
     meta: {
       title: '网站',

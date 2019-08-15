@@ -12,14 +12,16 @@
         <div v-for="(nav,key) in navArr" :key="key" style="margin-top: 10px;">
           <el-card :body-style="{ padding: '10px' }" shadow="hover">
             <img :src="nav.logo" class="image" alt="加载错误">
-            <el-form label-width="80px">
+            <el-form label-width="100px">
               <el-form-item label="网站名称">
                 {{ nav.name }}
               </el-form-item>
-              <el-form-item label="网站链接">
+              <el-form-item label="iframe链接">
                 <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">{{ nav.website }}
                 </router-link>
-                <a  class="font-website" :href="nav.website" target='_blank'>{{nav.website}}</a>
+              </el-form-item>
+              <el-form-item label="新窗口链接">
+                <a class="font-website" :href="nav.website" target="_blank">{{ nav.website }}</a>
               </el-form-item>
               <el-form-item label="网站描述">
                 <div>{{ nav.describe || '需要您添加网站描述' }}</div>

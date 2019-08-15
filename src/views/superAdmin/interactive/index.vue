@@ -2,7 +2,16 @@
   <div>
     <div class="nav-container">
       <H3>添加的网站</H3>
-      <el-table :data="tableAddData" stripe style="width: 100%" highlight-current-row>
+      <el-table
+        v-loading.fullscreen.lock="loading"
+        :data="tableAddData"
+        stripe
+        style="width: 100%"
+        highlight-current-row
+        element-loading-text="别催了，我在加载中"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
+      >
         <el-table-column type="index" />
         <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />
         <el-table-column prop="name" label="名字" width="200" show-overflow-tooltip />
@@ -67,7 +76,9 @@ export default {
     return {
       tableAddData: [],
       tablePutData: [],
-      currentPage: 4
+      currentPage: 4,
+      loading: true
+
     }
   },
   created() {
@@ -93,6 +104,7 @@ export default {
     },
     getMap() {
       apiAdmin.getMap().then(res => {
+        this.loading = false
         this.tableAddData = res.data.filter(item => {
           return !item.way
         })

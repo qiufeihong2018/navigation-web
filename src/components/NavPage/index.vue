@@ -1,5 +1,11 @@
 <template>
-  <div class="app-container">
+  <div
+    v-loading.fullscreen.lock="loading"
+    class="app-container"
+    element-loading-text="别催了，我在加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
     <waterfall
       :col="col"
       :width="itemWidth"
@@ -17,7 +23,8 @@
                 {{ nav.name }}
               </el-form-item>
               <el-form-item label="iframe链接">
-                <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">{{ nav.website }}
+                <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">
+                  {{ nav.website }}
                 </router-link>
               </el-form-item>
               <el-form-item label="新窗口链接">
@@ -34,7 +41,6 @@
             </div>
           </el-card>
         </div>
-
       </template>
     </waterfall>
     <el-dialog title="编辑网站" :visible.sync="dialogFormVisible">
@@ -75,7 +81,9 @@
 
 <script>
 import BackToTop from '@/components/BackToTop'
-
+import {
+  getOption
+} from '@/utils/index'
 import * as apiAdmin from '@/api/admin'
 import * as apiSuperAdmin from '@/api/superAdmin'
 
@@ -101,7 +109,8 @@ export default {
         background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
       },
       col: 4,
-      currentRoute: this.$router.currentRoute.name
+      currentRoute: this.$router.currentRoute.name,
+      loading: true
     }
   },
   computed: {
@@ -115,21 +124,7 @@ export default {
   created() {
     this.getMap()
     const routes = this.$router.options.routes
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].path !== '/redirect') {
-        const children = routes[i].children
-        for (const j in children) {
-          const obj = {
-            value: '',
-            label: ''
-          }
-          obj.value = children[j].path
-          obj.label = children[j].meta.title
-          this.categoryOptions.push(obj)
-        }
-      }
-    }
-    this.categoryOptions = this.categoryOptions.slice(0, -3)
+    this.categoryOptions = getOption(routes)
   },
   methods: {
 
@@ -145,6 +140,7 @@ export default {
     },
     getMap() {
       apiSuperAdmin.getSuperMap().then(res => {
+        this.loading = false
         this.navArr = res.data.filter(item => {
           return item.category.toLowerCase() === this.currentRoute.toLowerCase()
         })

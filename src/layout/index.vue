@@ -5,11 +5,14 @@
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
+        <TagsView v-if="needTagsView" />
         <div style="float:right">
           <GithubCorner />
         </div>
       </div>
-      <app-main />
+      <div :class="{'margin-app':fixedHeader}">
+        <AppMain />
+      </div>
       <RightPanel v-if="showSettings">
         <Settings />
       </RightPanel>
@@ -23,9 +26,10 @@ import GithubCorner from '@/components/GithubCorner'
 import {
   Navbar,
   Sidebar,
-  AppMain
+  AppMain,
+  Settings,
+  TagsView
 } from './components'
-import Settings from './components/Settings'
 import ResizeMixin from './mixin/ResizeHandler'
 import {
   mapState
@@ -39,7 +43,8 @@ export default {
     AppMain,
     Settings,
     GithubCorner,
-    RightPanel
+    RightPanel,
+    TagsView
   },
   mixins: [ResizeMixin],
   computed: {
@@ -102,6 +107,9 @@ export default {
     z-index: 9;
     width: calc(100% - #{$sideBarWidth});
     transition: width 0.28s;
+  }
+  .margin-app{
+    margin-top:100px
   }
 
   .hideSidebar .fixed-header {

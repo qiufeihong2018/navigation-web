@@ -1,6 +1,15 @@
 <template>
   <div class="table-container">
-    <el-table :data="tableData" stripe style="width: 100%" highlight-current-row>
+    <el-table
+      v-loading.fullscreen.lock="loading"
+      :data="tableData"
+      stripe
+      style="width: 100%"
+      highlight-current-row
+      element-loading-text="别催了，我在加载中"
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(0, 0, 0, 0.8)"
+    >
       <el-table-column
         type="index"
       />
@@ -58,7 +67,9 @@
 
 <script>
 import * as apiSuperAdmin from '@/api/superAdmin'
-
+import {
+  getOption
+} from '@/utils/index'
 export default {
   data() {
     return {
@@ -67,32 +78,21 @@ export default {
       form: {},
       formLabelWidth: '120px',
       categoryOptions: [],
-      currentPage: 4
+      currentPage: 4,
+      loading: true
 
     }
   },
   created() {
     this.getSuperMap()
     const routes = this.$router.options.routes
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].path !== '/redirect') {
-        const children = routes[i].children
-        for (const j in children) {
-          const obj = {
-            value: '',
-            label: ''
-          }
-          obj.value = children[j].path
-          obj.label = children[j].meta.title
-          this.categoryOptions.push(obj)
-        }
-      }
-    }
-    this.categoryOptions = this.categoryOptions.slice(3)
+    this.categoryOptions = getOption(routes)
   },
   methods: {
     getSuperMap() {
       apiSuperAdmin.getSuperMap().then(res => {
+        this.loading = false
+
         this.tableData = res.data
       })
     },

@@ -2,8 +2,7 @@
   <div class="submit-container">
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span>提交网站</span>
-        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+        <p>提交网站</p>
       </div>
       <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
         <el-form-item label="网站名称" prop="name">
@@ -35,7 +34,9 @@
 
 <script>
 import * as apiAdmin from '@/api/admin'
-
+import {
+  getOption
+} from '@/utils/index'
 export default {
   name: 'Submit',
   data() {
@@ -69,21 +70,7 @@ export default {
   },
   created() {
     const routes = this.$router.options.routes
-    for (let i = 0; i < routes.length; i++) {
-      if (routes[i].path !== '/redirect') {
-        const children = routes[i].children
-        for (const j in children) {
-          const obj = {
-            value: '',
-            label: ''
-          }
-          obj.value = children[j].path
-          obj.label = children[j].meta.title
-          this.categoryOptions.push(obj)
-        }
-      }
-    }
-    this.categoryOptions = this.categoryOptions.slice(0, -3)
+    this.categoryOptions = getOption(routes)
   },
   methods: {
     submitForm(formName) {

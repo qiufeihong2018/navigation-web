@@ -17,11 +17,9 @@
                 {{ nav.name }}
               </el-form-item>
               <el-form-item label="网站链接">
-                {{ currentRoute }}
-                <router-link v-if="currentRoute==='RecommendationFront-end'" class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">{{ nav.website }}
+                <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">{{ nav.website }}
                 </router-link>
-                <router-link v-else-if="currentRoute==='RecommendationBack-end'" class="font-website" :to="{ path: 'back-end/iframeNav', query: { website: nav.website }}">{{ nav.website }}
-                </router-link>
+                <a  class="font-website" :href="nav.website" target='_blank'>{{nav.website}}</a>
               </el-form-item>
               <el-form-item label="网站描述">
                 <div>{{ nav.describe || '需要您添加网站描述' }}</div>
@@ -146,7 +144,7 @@ export default {
     getMap() {
       apiSuperAdmin.getSuperMap().then(res => {
         this.navArr = res.data.filter(item => {
-          return item.category.toLowerCase() === this.$router.currentRoute.name.toLowerCase()
+          return item.category.toLowerCase() === this.currentRoute.toLowerCase()
         })
       })
     },

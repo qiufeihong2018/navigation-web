@@ -268,6 +268,15 @@ export const constantRoutes = [{
       title: '后端-构建工具',
       icon: 'buildTool'
     }
+  },
+  {
+    path: '/back-end/iframeNav',
+    name: 'IframeNav',
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
+    }
   }
   ]
 },
@@ -388,6 +397,15 @@ export const constantRoutes = [{
       title: '设计-设计团队',
       icon: 'designTeam'
     }
+  },
+  {
+    path: '/design/iframeNav',
+    name: 'IframeNav',
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
+    }
   }
   ]
 },
@@ -471,6 +489,15 @@ export const constantRoutes = [{
     meta: {
       title: '产品-趣味产品',
       icon: 'interestingProducts'
+    }
+  },
+  {
+    path: '/product/iframeNav',
+    name: 'IframeNav',
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
     }
   }
   ]
@@ -556,6 +583,15 @@ export const constantRoutes = [{
       title: '运营-ASO优化',
       icon: 'ASOOptimization'
     }
+  },
+  {
+    path: '/operate/iframeNav',
+    name: 'IframeNav',
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
+    }
   }
   ]
 },
@@ -594,6 +630,15 @@ export const constantRoutes = [{
     meta: {
       title: '工作-设计兼职',
       icon: 'partTimeDesign'
+    }
+  },
+  {
+    path: '/jobs/iframeNav',
+    name: 'IframeNav',
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
     }
   }
   ]
@@ -651,6 +696,15 @@ export const constantRoutes = [{
     meta: {
       title: '极客-游戏系统',
       icon: 'gameSystem'
+    }
+  },
+  {
+    path: '/geeks/iframeNav',
+    name: 'IframeNav',
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
     }
   }
   ]

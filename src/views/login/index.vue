@@ -112,6 +112,7 @@ export default {
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
+            setTimeout(function() { location.reload() }, 0)
           }).catch(() => {
             this.loading = false
           })

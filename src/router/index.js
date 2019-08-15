@@ -723,42 +723,46 @@ export const constantRoutes = [{
       icon: 'submit'
     }
   }]
-},
-{
-  path: '/superAdmin',
-  component: Layout,
-  redirect: '/superAdmin/interactive',
-  name: 'SuperAdmin',
-  meta: {
-    title: '超管',
-    icon: 'superAdmin'
-  },
-  children: [{
-    path: 'interactive',
-    name: 'Interactive',
-    component: () => import('@/views/superAdmin/interactive/index'),
-    meta: {
-      title: '超管-交互',
-      icon: 'interactive'
-    }
-  },
-  {
-    path: 'handle',
-    name: 'Handle',
-    component: () => import('@/views/superAdmin/handle/index'),
-    meta: {
-      title: '超管-操作',
-      icon: 'handle'
-    }
-  }
-  ]
-},
-// 404 page must be placed at the end !!!
-{
-  path: '*',
-  redirect: '/404',
-  hidden: true
 }
+
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
+  {
+    path: '/superAdmin',
+    component: Layout,
+    redirect: '/superAdmin/interactive',
+    name: 'SuperAdmin',
+    meta: {
+      title: '超管',
+      icon: 'superAdmin'
+    },
+    children: [{
+      path: 'interactive',
+      name: 'Interactive',
+      component: () => import('@/views/superAdmin/interactive/index'),
+      meta: {
+        title: '超管-交互',
+        icon: 'interactive'
+      }
+    },
+    {
+      path: 'handle',
+      name: 'Handle',
+      component: () => import('@/views/superAdmin/handle/index'),
+      meta: {
+        title: '超管-操作',
+        icon: 'handle'
+      }
+    }
+    ]
+  },
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-// //production
+// // production
 // import store from '@/store'
 // import { getToken } from '@/utils/auth'
 
@@ -14,8 +14,8 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
-    // do something before request is sent
-    // //production
+    // // do something before request is sent
+    // // production
     // if (store.getters.token) {
     //   // let each request carry token
     //   // ['X-Token'] is a custom headers key

@@ -1,7 +1,13 @@
 <template>
   <div class="register-container">
-    <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="register-form" auto-complete="on"
-      label-position="left">
+    <el-form
+      ref="registerForm"
+      :model="registerForm"
+      :rules="registerRules"
+      class="register-form"
+      auto-complete="on"
+      label-position="left"
+    >
 
       <div class="title-container">
         <h3 class="title">register Form</h3>
@@ -11,23 +17,43 @@
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input ref="username" v-model="registerForm.username" placeholder="Username" name="username" type="text"
-          tabindex="1" auto-complete="on" />
+        <el-input
+          ref="username"
+          v-model="registerForm.username"
+          placeholder="Username"
+          name="username"
+          type="text"
+          tabindex="1"
+          auto-complete="on"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
-        <el-input :key="passwordType" ref="password" v-model="registerForm.password" :type="passwordType"
-          placeholder="Password" name="password" tabindex="2" auto-complete="on" @keyup.enter.native="handleregister" />
+        <el-input
+          :key="passwordType"
+          ref="password"
+          v-model="registerForm.password"
+          :type="passwordType"
+          placeholder="Password"
+          name="password"
+          tabindex="2"
+          auto-complete="on"
+          @keyup.enter.native="handleregister"
+        />
         <span class="show-pwd" @click="showPwd">
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
-        @click.native.prevent="handleregister">register</el-button>
+      <el-button
+        :loading="loading"
+        type="primary"
+        style="width:100%;margin-bottom:30px;"
+        @click.native.prevent="handleregister"
+      >register</el-button>
 
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
@@ -39,60 +65,60 @@
 </template>
 
 <script>
-  export default {
-    name: 'register',
-    data() {
-      return {
-        registerForm: {
-          username: 'admin',
-          password: 'admin'
-        },
-        registerRules: {
-          username: [{
-            required: true,
-            trigger: 'blur'
-          }],
-          password: [{
-            required: true,
-            trigger: 'blur'
-          }]
-        },
-        loading: false,
-        passwordType: 'password',
-        redirect: undefined
-      }
-    },
-    methods: {
-      showPwd() {
-        if (this.passwordType === 'password') {
-          this.passwordType = ''
-        } else {
-          this.passwordType = 'password'
-        }
-        this.$nextTick(() => {
-          this.$refs.password.focus()
-        })
+export default {
+  name: 'Register',
+  data() {
+    return {
+      registerForm: {
+        username: 'admin',
+        password: 'admin'
       },
-      handleregister() {
-        this.$refs.registerForm.validate(valid => {
-          if (valid) {
-            this.loading = true
-            this.$store.dispatch('user/register', this.registerForm).then(() => {
-              this.$router.push({
-                path: '/login' || '/'
-              })
-              this.loading = false
-            }).catch(() => {
-              this.loading = false
-            })
-          } else {
-            console.log('error submit!!')
-            return false
-          }
-        })
+      registerRules: {
+        username: [{
+          required: true,
+          trigger: 'blur'
+        }],
+        password: [{
+          required: true,
+          trigger: 'blur'
+        }]
+      },
+      loading: false,
+      passwordType: 'password',
+      redirect: undefined
+    }
+  },
+  methods: {
+    showPwd() {
+      if (this.passwordType === 'password') {
+        this.passwordType = ''
+      } else {
+        this.passwordType = 'password'
       }
+      this.$nextTick(() => {
+        this.$refs.password.focus()
+      })
+    },
+    handleregister() {
+      this.$refs.registerForm.validate(valid => {
+        if (valid) {
+          this.loading = true
+          this.$store.dispatch('user/register', this.registerForm).then(() => {
+            this.$router.push({
+              path: '/login' || '/'
+            })
+            this.loading = false
+          }).catch(() => {
+            this.loading = false
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
+}
 
 </script>
 

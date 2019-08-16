@@ -10,7 +10,7 @@
 
 >分类导航网站
 
-英文|(./README.md)
+简体中文 | [English](./README.md)
 
 ###🏠[首页]（http://navigation.qiufeihong.top）
 

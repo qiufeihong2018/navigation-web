@@ -10,7 +10,7 @@
 
 > A classified navigation website
 
-简体中文|(./README-CN.md)
+English | [简体中文](./README-zh.md)
 
 ### 🏠 [Homepage](http://navigation.qiufeihong.top)
 

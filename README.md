@@ -38,6 +38,14 @@ npm run dev
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/qiufeihong2018/navigation-web/issues).
 
+## Website screenshot
+
+![Site navigation block waterfall flow](http://puz03r2zg.bkt.clouddn.com/web.png)
+
+![Website nested iframe](http://puz03r2zg.bkt.clouddn.com/web2.png)
+
+![Website submission](http://puz03r2zg.bkt.clouddn.com/web3.png)
+
 ## Online Demo
 
 [Preview](http://navigation.qiufeihong.top)

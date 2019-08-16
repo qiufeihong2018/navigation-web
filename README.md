@@ -38,16 +38,17 @@ npm run dev
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/qiufeihong2018/navigation-web/issues).
 
+## Online Demo
+
+[Preview](http://navigation.qiufeihong.top)
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
+## Donate
 
-![avatar](./alipay.jpg)
+If you find this project useful, you can buy author a glass of juice :tropical_drink:
 
+![donate](http://puz03r2zg.bkt.clouddn.com/pay.png)
 
-![avatar](./wechat.jpg)
-
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

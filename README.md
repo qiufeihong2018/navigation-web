@@ -23,6 +23,9 @@ English | [简体中文](./README-zh.md)
 
 ```sh
 npm install
+
+npm run dev
+
 ```
 
 ## Author

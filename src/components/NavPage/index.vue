@@ -20,7 +20,7 @@
             <img :src="nav.logo" class="image" alt="加载错误">
             <el-form label-width="100px">
               <el-form-item label="网站名称">
-                {{ nav.name }}-{{ device }}
+                {{ nav.name }}
               </el-form-item>
               <el-form-item label="iframe链接">
                 <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">

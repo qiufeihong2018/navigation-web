@@ -20,7 +20,7 @@
             <img :src="nav.logo" class="image" alt="加载错误">
             <el-form label-width="100px">
               <el-form-item label="网站名称">
-                {{ nav.name }}
+                {{ nav.name }}-{{ device }}
               </el-form-item>
               <el-form-item label="iframe链接">
                 <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">
@@ -86,6 +86,9 @@ import {
 } from '@/utils/index'
 import * as apiAdmin from '@/api/admin'
 import * as apiSuperAdmin from '@/api/superAdmin'
+import {
+  mapGetters
+} from 'vuex'
 
 export default {
   components: {
@@ -108,18 +111,26 @@ export default {
         'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
       },
-      col: 4,
+      col: this.device === 'mobile' ? 1 : 4,
       currentRoute: this.$router.currentRoute.name,
       loading: true
     }
   },
   computed: {
     itemWidth() {
+      if (this.device === 'mobile') {
+        return 375
+      }
       return (150 * 0.5 * (document.documentElement.clientWidth / 375))
     },
     gutterWidth() {
       return (9 * 0.5 * (document.documentElement.clientWidth / 375))
-    }
+    },
+    ...mapGetters([
+      'sidebar',
+      'avatar',
+      'device'
+    ])
   },
   created() {
     this.getMap()
@@ -127,7 +138,6 @@ export default {
     this.categoryOptions = getOption(routes)
   },
   methods: {
-
     scroll(scrollData) {
       // console.log(scrollData)
     },
@@ -198,6 +208,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>
@@ -235,4 +246,5 @@ export default {
   .font-website:hover {
     color: #409EFF;
   }
+
 </style>

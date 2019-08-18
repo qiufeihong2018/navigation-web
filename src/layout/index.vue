@@ -32,7 +32,7 @@ import {
 } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import {
-  mapState
+  mapGetters
 } from 'vuex'
 
 export default {
@@ -48,13 +48,13 @@ export default {
   },
   mixins: [ResizeMixin],
   computed: {
-    ...mapState({
-      sidebar: state => state.app.sidebar,
-      device: state => state.app.device,
-      showSettings: state => state.settings.showSettings,
-      needTagsView: state => state.settings.tagsView,
-      fixedHeader: state => state.settings.fixedHeader
-    }),
+    ...mapGetters([
+      'sidebar',
+      'device',
+      'showSettings',
+      'needTagsView',
+      'fixedHeader'
+    ]),
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened,

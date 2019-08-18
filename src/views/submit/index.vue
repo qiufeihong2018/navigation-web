@@ -6,7 +6,7 @@
       </div>
       <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
         <el-form-item label="网站名称" prop="name">
-          <el-input v-model="ruleForm.name" />
+          <el-input v-model="ruleForm.name" placeholder="例如：navigation-web" />
         </el-form-item>
         <el-form-item label="网站分类" prop="category">
           <el-select v-model="ruleForm.category" placeholder="请选择网站分类">
@@ -14,13 +14,13 @@
           </el-select>
         </el-form-item>
         <el-form-item label="网站链接" prop="website">
-          <el-input v-model="ruleForm.website" />
+          <el-input v-model="ruleForm.website" placeholder="例如：http://navigation.qiufeihong.top" />
         </el-form-item>
         <el-form-item label="网站LOGO" prop="logo">
-          <el-input v-model="ruleForm.logo" />
+          <el-input v-model="ruleForm.logo" placeholder="例如：http://navigation.qiufeihong.top/favicon.ico" />
         </el-form-item>
         <el-form-item label="网站描述" prop="describe">
-          <el-input v-model="ruleForm.describe" type="textarea" />
+          <el-input v-model="ruleForm.describe" type="textarea" placeholder="例如：一个网站导航和收藏平台（请用中文）" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">立即提交</el-button>
@@ -76,6 +76,9 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          if (this.ruleForm.logo === '') {
+            this.ruleForm.logo = 'http://navigation.qiufeihong.top/favicon.ico'
+          }
           apiAdmin.postMap(this.ruleForm).then(res => {
             if (res.state === 'ok') {
               this.$notify.success({

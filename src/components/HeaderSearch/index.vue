@@ -181,7 +181,7 @@ export default {
 
   &.show {
     .header-search-select {
-      width: 210px;
+      width: 180px;
       margin-left: 10px;
     }
   }

@@ -13,65 +13,71 @@
       <div :class="{'margin-app':fixedHeader}">
         <AppMain />
       </div>
-      <RightPanel v-if="showSettings">
+      <RightPanel v-if="showSettings" :buttonTop="325" :elIcon="'el-icon-setting'">
         <Settings />
+      </RightPanel>
+      <RightPanel v-if="showSettings" :buttonTop="250" :elIcon="'el-icon-search'">
+        <Search />
       </RightPanel>
     </div>
   </div>
 </template>
 
 <script>
-import RightPanel from '@/components/RightPanel'
-import GithubCorner from '@/components/GithubCorner'
-import {
-  Navbar,
-  Sidebar,
-  AppMain,
-  Settings,
-  TagsView
-} from './components'
-import ResizeMixin from './mixin/ResizeHandler'
-import {
-  mapGetters
-} from 'vuex'
-
-export default {
-  name: 'Layout',
-  components: {
+  import RightPanel from '@/components/RightPanel'
+  import GithubCorner from '@/components/GithubCorner'
+  import {
     Navbar,
     Sidebar,
     AppMain,
     Settings,
-    GithubCorner,
-    RightPanel,
+    Search,
     TagsView
-  },
-  mixins: [ResizeMixin],
-  computed: {
-    ...mapGetters([
-      'sidebar',
-      'device',
-      'showSettings',
-      'needTagsView',
-      'fixedHeader'
-    ]),
-    classObj() {
-      return {
-        hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened,
-        withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile'
+  } from './components'
+  import ResizeMixin from './mixin/ResizeHandler'
+  import {
+    mapGetters
+  } from 'vuex'
+
+  export default {
+    name: 'Layout',
+    components: {
+      Navbar,
+      Sidebar,
+      AppMain,
+      Settings,
+      Search,
+      GithubCorner,
+      RightPanel,
+      TagsView
+    },
+    mixins: [ResizeMixin],
+    computed: {
+      ...mapGetters([
+        'sidebar',
+        'device',
+        'showSettings',
+        'needTagsView',
+        'fixedHeader'
+      ]),
+      classObj() {
+        return {
+          hideSidebar: !this.sidebar.opened,
+          openSidebar: this.sidebar.opened,
+          withoutAnimation: this.sidebar.withoutAnimation,
+          mobile: this.device === 'mobile'
+        }
+      }
+    },
+    methods: {
+      handleClickOutside() {
+        this.$store.dispatch('app/closeSideBar', {
+          withoutAnimation: false
+        })
       }
     }
-  },
-  methods: {
-    handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', {
-        withoutAnimation: false
-      })
-    }
   }
-}
+
 </script>
 
 <style lang="scss" scoped>
@@ -108,8 +114,9 @@ export default {
     width: calc(100% - #{$sideBarWidth});
     transition: width 0.28s;
   }
-  .margin-app{
-    margin-top:100px
+
+  .margin-app {
+    margin-top: 100px
   }
 
   .hideSidebar .fixed-header {
@@ -119,4 +126,5 @@ export default {
   .mobile .fixed-header {
     width: 100%;
   }
+
 </style>

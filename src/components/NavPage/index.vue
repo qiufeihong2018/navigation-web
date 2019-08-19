@@ -1,8 +1,19 @@
 <template>
-  <div v-loading.fullscreen.lock="loading" class="app-container" element-loading-text="别催了，我在加载中"
-    element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
-    <waterfall :col="col" :width="itemWidth" :gutter-width="gutterWidth" :data="navArr" @loadmore="loadmore"
-      @scroll="scroll">
+  <div
+    v-loading.fullscreen.lock="loading"
+    class="app-container"
+    element-loading-text="别催了，我在加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+  >
+    <waterfall
+      :col="col"
+      :width="itemWidth"
+      :gutter-width="gutterWidth"
+      :data="navArr"
+      @loadmore="loadmore"
+      @scroll="scroll"
+    >
       <template>
         <div v-for="(nav,key) in navArr" :key="key" style="margin-top: 10px;">
           <el-card :body-style="{ padding: '10px' }" shadow="hover">
@@ -58,154 +69,158 @@
       </div>
     </el-dialog>
     <el-tooltip placement="top" content="返回顶部">
-      <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="50"
-        transition-name="fade" />
+      <back-to-top
+        :custom-style="myBackToTopStyle"
+        :visibility-height="300"
+        :back-position="50"
+        transition-name="fade"
+      />
     </el-tooltip>
   </div>
 </template>
 
 <script>
-  import BackToTop from '@/components/BackToTop'
-  import {
-    getOption
-  } from '@/utils/index'
-  import * as apiAdmin from '@/api/admin'
-  import * as apiSuperAdmin from '@/api/superAdmin'
-  import {
-    mapGetters
-  } from 'vuex'
+import BackToTop from '@/components/BackToTop'
+import {
+  getOption
+} from '@/utils/index'
+import * as apiAdmin from '@/api/admin'
+import * as apiSuperAdmin from '@/api/superAdmin'
+import {
+  mapGetters
+} from 'vuex'
 
-  export default {
-    components: {
-      BackToTop
-    },
-    data() {
-      return {
-        navArr: [],
-        dialogFormVisible: false,
-        form: {},
-        formLabelWidth: '120px',
-        categoryOptions: [],
-        // customizable button style, show/hide critical point, return position
-        myBackToTopStyle: {
-          right: '50px',
-          bottom: '50px',
-          width: '40px',
-          height: '40px',
-          'border-radius': '4px',
-          'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
-          background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
-        },
-        currentRoute: this.$router.currentRoute.name,
-        loading: true
+export default {
+  components: {
+    BackToTop
+  },
+  data() {
+    return {
+      navArr: [],
+      dialogFormVisible: false,
+      form: {},
+      formLabelWidth: '120px',
+      categoryOptions: [],
+      // customizable button style, show/hide critical point, return position
+      myBackToTopStyle: {
+        right: '50px',
+        bottom: '50px',
+        width: '40px',
+        height: '40px',
+        'border-radius': '4px',
+        'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
+        background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
+      },
+      currentRoute: this.$router.currentRoute.name,
+      loading: true
+    }
+  },
+  computed: {
+    col() {
+      if (this.device === 'mobile') {
+        return 1
       }
+      if (this.sidebar.opened === true) {
+        return 3
+      }
+      return 4
     },
-    computed: {
-      col() {
-        if (this.device === 'mobile') {
-          return 1
-        }
-        if (this.sidebar.opened === true) {
-          return 3
-        }
-        return 4
-      },
-      itemWidth() {
-        if (this.device === 'mobile') {
-          return (0.885 * (document.documentElement.clientWidth / 1))
-        }
-        if (this.sidebar.opened === true) {
-          return (0.84 * (document.documentElement.clientWidth / 3))
-        }
-        return (0.9 * (document.documentElement.clientWidth / 4))
-      },
-      gutterWidth() {
-        if (this.device === 'mobile') {
-          return 0
-        }
-        return (9 * 0.5 * (document.documentElement.clientWidth / 375))
-      },
-      ...mapGetters([
-        'sidebar',
-        'device'
-      ])
+    itemWidth() {
+      if (this.device === 'mobile') {
+        return (0.885 * (document.documentElement.clientWidth / 1))
+      }
+      if (this.sidebar.opened === true) {
+        return (0.84 * (document.documentElement.clientWidth / 3))
+      }
+      return (0.9 * (document.documentElement.clientWidth / 4))
     },
-    created() {
-      this.getMap()
-      const routes = this.$router.options.routes
-      this.categoryOptions = getOption(routes)
+    gutterWidth() {
+      if (this.device === 'mobile') {
+        return 0
+      }
+      return (9 * 0.5 * (document.documentElement.clientWidth / 375))
     },
-    methods: {
-      scroll(scrollData) {
-        // console.log(scrollData)
-      },
-      loadmore(index) {
-        // console.log('没有了')
-      },
-      openDialog(nav) {
-        this.dialogFormVisible = true
-        this.form = nav
-      },
-      getMap() {
-        apiSuperAdmin.getSuperMap().then(res => {
-          this.loading = false
-          this.navArr = res.data.filter(item => {
-            return item.category.toLowerCase() === this.currentRoute.toLowerCase()
-          })
+    ...mapGetters([
+      'sidebar',
+      'device'
+    ])
+  },
+  created() {
+    this.getMap()
+    const routes = this.$router.options.routes
+    this.categoryOptions = getOption(routes)
+  },
+  methods: {
+    scroll(scrollData) {
+      // console.log(scrollData)
+    },
+    loadmore(index) {
+      // console.log('没有了')
+    },
+    openDialog(nav) {
+      this.dialogFormVisible = true
+      this.form = nav
+    },
+    getMap() {
+      apiSuperAdmin.getSuperMap().then(res => {
+        this.loading = false
+        this.navArr = res.data.filter(item => {
+          return item.category.toLowerCase() === this.currentRoute.toLowerCase()
         })
-      },
-      deleteMap(nav) {
-        this.$confirm('此操作将永久删除该网站, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+      })
+    },
+    deleteMap(nav) {
+      this.$confirm('此操作将永久删除该网站, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$notify.error({
+          title: '失败',
+          message: `您没有权限删除网站《${nav.name}》`
+        })
+      })
+      //   apiAdmin.deleteMap(nav._id).then(res => {
+      //     if (res.state === 'ok') {
+      //       this.$notify.success({
+      //         title: '成功',
+      //         message: `删除网站《${nav.name}》成功！`
+      //       })
+      //     } else {
+      //       this.$notify.error({
+      //         title: '失败',
+      //         message: `删除网站《${nav.name}》失败！`
+      //       })
+      //     }
+      //     this.getMap()
+      //   })
+      // }).catch(() => {
+      //   this.$message({
+      //     type: 'info',
+      //     message: '已取消删除'
+      //   })
+      // })
+    },
+    putMap(form) {
+      this.dialogFormVisible = false
+      form.way = 'put'
+      apiAdmin.putMap(form._id, form).then(res => {
+        if (res.state === 'ok') {
+          this.$notify.success({
+            title: '成功',
+            message: `管理员会处理编辑请求！`
+          })
+        } else {
           this.$notify.error({
             title: '失败',
-            message: `您没有权限删除网站《${nav.name}》`
+            message: `编辑网站《${form.name}》失败！`
           })
-        })
-        //   apiAdmin.deleteMap(nav._id).then(res => {
-        //     if (res.state === 'ok') {
-        //       this.$notify.success({
-        //         title: '成功',
-        //         message: `删除网站《${nav.name}》成功！`
-        //       })
-        //     } else {
-        //       this.$notify.error({
-        //         title: '失败',
-        //         message: `删除网站《${nav.name}》失败！`
-        //       })
-        //     }
-        //     this.getMap()
-        //   })
-        // }).catch(() => {
-        //   this.$message({
-        //     type: 'info',
-        //     message: '已取消删除'
-        //   })
-        // })
-      },
-      putMap(form) {
-        this.dialogFormVisible = false
-        form.way = 'put'
-        apiAdmin.putMap(form._id, form).then(res => {
-          if (res.state === 'ok') {
-            this.$notify.success({
-              title: '成功',
-              message: `管理员会处理编辑请求！`
-            })
-          } else {
-            this.$notify.error({
-              title: '失败',
-              message: `编辑网站《${form.name}》失败！`
-            })
-          }
-          this.getMap()
-        })
-      }
+        }
+        this.getMap()
+      })
     }
   }
+}
 </script>
 
 <style>

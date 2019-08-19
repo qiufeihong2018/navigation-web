@@ -16,22 +16,11 @@ import waterfall from 'vue-waterfall2'
 Vue.use(waterfall)
 
 import '@/icons' // icon
-import '@/permission' // permission control
+import { permission } from '@/permission'
 
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online! ! !
- */
-// import {
-//   mockXHR
-// } from '../mock'
-// if (process.env.NODE_ENV === 'production') {
-//   mockXHR()
-// }
+if (process.env.NODE_ENV === 'production') {
+  permission()
+}
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, {
@@ -52,6 +41,7 @@ Vue.filter('timeTrans', function(value) {
     hour12: false
   })
 })
+
 new Vue({
   el: '#app',
   router,

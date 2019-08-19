@@ -1,7 +1,7 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
+    <Sidebar class="sidebar-container" />
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
@@ -91,8 +91,8 @@ export default {
   }
 
   .drawer-bg {
-    background: #000;
-    opacity: 0.3;
+    background: #303133;
+    opacity: 0.5;
     width: 100%;
     top: 0;
     height: 100%;

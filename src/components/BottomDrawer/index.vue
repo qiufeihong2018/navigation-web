@@ -2,7 +2,7 @@
   <div ref="rightPanel" :class="{show:show}" class="rightPanel-container">
     <div class="rightPanel-background" />
     <div class="rightPanel">
-      <div class="handle-button" :style="{'top':buttonTop+'px','background-color':theme}" @click="show=!show">
+      <div class="handle-button" :style="{'bottom':'0px','background-color':theme}" @click="show=!show">
         <i :class="show?'el-icon-close':elIcon" />
       </div>
       <div class="rightPanel-items">
@@ -140,7 +140,7 @@ export default {
     left: -48px;
     text-align: center;
     font-size: 24px;
-    border-radius: 6px 0 0 6px !important;
+    border-radius: 6px 6px 0 0  !important;
     z-index: 0;
     pointer-events: auto;
     cursor: pointer;

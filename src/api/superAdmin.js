@@ -7,6 +7,13 @@ export function getSuperMap() {
   })
 }
 
+export function getSuperSearch(query) {
+  return request({
+    url: `/superAdmin/search/${query}`,
+    method: 'get'
+  })
+}
+
 export function postSuperMap(id, data) {
   return request({
     url: `/superAdmin/${id}`,

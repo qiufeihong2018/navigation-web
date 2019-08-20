@@ -13,10 +13,10 @@
       <div :class="{'margin-app':fixedHeader}">
         <AppMain />
       </div>
-      <RightPanel v-if="showSettings" :buttonTop="325" :elIcon="'el-icon-setting'">
+      <RightPanel v-if="showSettings" :button-top="325" :el-icon="'el-icon-setting'">
         <Settings />
       </RightPanel>
-      <RightPanel v-if="showSettings" :buttonTop="250" :elIcon="'el-icon-search'">
+      <RightPanel v-if="showSettings" :button-top="250" :el-icon="'el-icon-search'">
         <Search />
       </RightPanel>
     </div>
@@ -24,59 +24,59 @@
 </template>
 
 <script>
-  import RightPanel from '@/components/RightPanel'
-  import GithubCorner from '@/components/GithubCorner'
-  import {
+import RightPanel from '@/components/RightPanel'
+import GithubCorner from '@/components/GithubCorner'
+import {
+  Navbar,
+  Sidebar,
+  AppMain,
+  Settings,
+  Search,
+  TagsView
+} from './components'
+import ResizeMixin from './mixin/ResizeHandler'
+import {
+  mapGetters
+} from 'vuex'
+
+export default {
+  name: 'Layout',
+  components: {
     Navbar,
     Sidebar,
     AppMain,
     Settings,
     Search,
+    GithubCorner,
+    RightPanel,
     TagsView
-  } from './components'
-  import ResizeMixin from './mixin/ResizeHandler'
-  import {
-    mapGetters
-  } from 'vuex'
-
-  export default {
-    name: 'Layout',
-    components: {
-      Navbar,
-      Sidebar,
-      AppMain,
-      Settings,
-      Search,
-      GithubCorner,
-      RightPanel,
-      TagsView
-    },
-    mixins: [ResizeMixin],
-    computed: {
-      ...mapGetters([
-        'sidebar',
-        'device',
-        'showSettings',
-        'needTagsView',
-        'fixedHeader'
-      ]),
-      classObj() {
-        return {
-          hideSidebar: !this.sidebar.opened,
-          openSidebar: this.sidebar.opened,
-          withoutAnimation: this.sidebar.withoutAnimation,
-          mobile: this.device === 'mobile'
-        }
-      }
-    },
-    methods: {
-      handleClickOutside() {
-        this.$store.dispatch('app/closeSideBar', {
-          withoutAnimation: false
-        })
+  },
+  mixins: [ResizeMixin],
+  computed: {
+    ...mapGetters([
+      'sidebar',
+      'device',
+      'showSettings',
+      'needTagsView',
+      'fixedHeader'
+    ]),
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
+        withoutAnimation: this.sidebar.withoutAnimation,
+        mobile: this.device === 'mobile'
       }
     }
+  },
+  methods: {
+    handleClickOutside() {
+      this.$store.dispatch('app/closeSideBar', {
+        withoutAnimation: false
+      })
+    }
   }
+}
 
 </script>
 

@@ -1,156 +1,65 @@
 <template>
-  <div ref="rightPanel" :class="{show:show}" class="rightPanel-container">
-    <div class="rightPanel-background" />
-    <div class="rightPanel">
-      <div class="handle-button" :style="{'bottom':'0px','background-color':theme}" @click="show=!show">
-        <i :class="show?'el-icon-close':elIcon" />
-      </div>
-      <div class="rightPanel-items">
-        <slot />
-      </div>
-    </div>
+  <div>
+    <el-button type="text" @click="table = true">打开嵌套表格的 Drawer</el-button>
+    <el-drawer title="我嵌套了表格!" :visible.sync="table" direction="btt" size="50%">
+      <el-table :data="gridData">
+        <el-table-column property="date" label="日期" width="150"></el-table-column>
+        <el-table-column property="name" label="姓名" width="200"></el-table-column>
+        <el-table-column property="address" label="地址"></el-table-column>
+      </el-table>
+    </el-drawer>
   </div>
 </template>
-
 <script>
-import {
-  addClass,
-  removeClass
-} from '@/utils'
-
-export default {
-  name: 'RightPanel',
-  props: {
-    clickNotClose: {
-      default: false,
-      type: Boolean
+  export default {
+    name: 'BottomDrawer',
+    data() {
+      return {
+        table: false,
+        dialog: false,
+        loading: false,
+        gridData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }],
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formLabelWidth: '80px'
+      };
     },
-    buttonTop: {
-      default: 250,
-      type: Number
-    },
-    elIcon: {
-      default: 'el-icon-setting',
-      type: String
-    }
-  },
-  data() {
-    return {
-      show: false
-    }
-  },
-  computed: {
-    theme() {
-      return this.$store.state.settings.theme
-    }
-  },
-  watch: {
-    show(value) {
-      if (value && !this.clickNotClose) {
-        this.addEventClick()
+    methods: {
+      handleClose(done) {
+        this.$confirm('确定要提交表单吗？')
+          .then(_ => {
+            this.loading = true;
+            setTimeout(() => {
+              this.loading = false;
+              done();
+            }, 2000);
+          })
+          .catch(_ => {});
       }
-      if (value) {
-        addClass(document.body, 'showRightPanel')
-      } else {
-        removeClass(document.body, 'showRightPanel')
-      }
-    }
-  },
-  mounted() {
-    this.insertToBody()
-  },
-  beforeDestroy() {
-    const elx = this.$refs.rightPanel
-    elx.remove()
-  },
-  methods: {
-    addEventClick() {
-      window.addEventListener('click', this.closeSidebar)
-    },
-    closeSidebar(evt) {
-      const parent = evt.target.closest('.rightPanel')
-      if (!parent) {
-        this.show = false
-        window.removeEventListener('click', this.closeSidebar)
-      }
-    },
-    insertToBody() {
-      const elx = this.$refs.rightPanel
-      const body = document.querySelector('body')
-      body.insertBefore(elx, body.firstChild)
     }
   }
-}
-
 </script>
-
-<style>
-  .showRightPanel {
-    overflow: hidden;
-    position: relative;
-    width: calc(100% - 15px);
-  }
-
-</style>
-
-<style lang="scss" scoped>
-  .rightPanel-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity .3s cubic-bezier(.7, .3, .1, 1);
-    background: rgba(0, 0, 0, .2);
-    z-index: -1;
-  }
-
-  .rightPanel {
-    width: 100%;
-    max-width: 260px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, .05);
-    transition: all .25s cubic-bezier(.7, .3, .1, 1);
-    transform: translate(100%);
-    background: #fff;
-    z-index: 40000;
-  }
-
-  .show {
-    transition: all .3s cubic-bezier(.7, .3, .1, 1);
-
-    .rightPanel-background {
-      z-index: 20000;
-      opacity: 1;
-      width: 100%;
-      height: 100%;
-    }
-
-    .rightPanel {
-      transform: translate(0);
-    }
-  }
-
-  .handle-button {
-    width: 48px;
-    height: 48px;
-    position: absolute;
-    left: -48px;
-    text-align: center;
-    font-size: 24px;
-    border-radius: 6px 6px 0 0  !important;
-    z-index: 0;
-    pointer-events: auto;
-    cursor: pointer;
-    color: #fff;
-    line-height: 48px;
-
-    i {
-      font-size: 24px;
-      line-height: 48px;
-    }
-  }
-
-</style>

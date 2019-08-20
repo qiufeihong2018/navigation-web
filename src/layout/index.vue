@@ -16,15 +16,15 @@
       <RightPanel v-if="showSettings" :button-top="325" :el-icon="'el-icon-setting'">
         <Settings />
       </RightPanel>
-      <RightPanel v-if="showSettings" :button-top="250" :el-icon="'el-icon-search'">
-        <Search />
-      </RightPanel>
+      <BottomDrawer :button-top="250" :el-icon="'el-icon-search'"/>
     </div>
   </div>
 </template>
 
 <script>
 import RightPanel from '@/components/RightPanel'
+import BottomDrawer from '@/components/BottomDrawer'
+
 import GithubCorner from '@/components/GithubCorner'
 import {
   Navbar,
@@ -49,6 +49,7 @@ export default {
     Search,
     GithubCorner,
     RightPanel,
+    BottomDrawer,
     TagsView
   },
   mixins: [ResizeMixin],

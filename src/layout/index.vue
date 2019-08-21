@@ -4,7 +4,7 @@
     <Sidebar class="sidebar-container" />
     <div class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
+        <Navbar />
         <TagsView v-if="needTagsView" />
         <div style="float:right">
           <GithubCorner />
@@ -16,7 +16,7 @@
       <RightPanel v-if="showSettings" :button-top="325" :el-icon="'el-icon-setting'">
         <Settings />
       </RightPanel>
-      <BottomDrawer :button-top="250" :el-icon="'el-icon-search'"/>
+      <BottomDrawer />
     </div>
   </div>
 </template>
@@ -31,7 +31,6 @@ import {
   Sidebar,
   AppMain,
   Settings,
-  Search,
   TagsView
 } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
@@ -46,7 +45,6 @@ export default {
     Sidebar,
     AppMain,
     Settings,
-    Search,
     GithubCorner,
     RightPanel,
     BottomDrawer,

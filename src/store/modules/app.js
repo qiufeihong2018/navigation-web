@@ -6,7 +6,8 @@ const state = {
     withoutAnimation: false
   },
   device: 'desktop',
-  size: Cookies.get('size') || 'medium'
+  size: Cookies.get('size') || 'medium',
+  openDrawer: false
 }
 
 const mutations = {
@@ -30,21 +31,39 @@ const mutations = {
   SET_SIZE: (state, size) => {
     state.size = size
     Cookies.set('size', size)
+  },
+  TOGGLE_OPENDRAWER: (state, openDrawer) => {
+    state.openDrawer = openDrawer
   }
 }
 
 const actions = {
-  toggleSideBar({ commit }) {
+  toggleSideBar({
+    commit
+  }) {
     commit('TOGGLE_SIDEBAR')
   },
-  closeSideBar({ commit }, { withoutAnimation }) {
+  closeSideBar({
+    commit
+  }, {
+    withoutAnimation
+  }) {
     commit('CLOSE_SIDEBAR', withoutAnimation)
   },
-  toggleDevice({ commit }, device) {
+  toggleDevice({
+    commit
+  }, device) {
     commit('TOGGLE_DEVICE', device)
   },
-  setSize({ commit }, size) {
+  setSize({
+    commit
+  }, size) {
     commit('SET_SIZE', size)
+  },
+  toggle_openDrawer({
+    commit
+  }, openDrawer) {
+    commit('TOGGLE_OPENDRAWER', openDrawer)
   }
 }
 

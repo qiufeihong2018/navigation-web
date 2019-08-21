@@ -4,7 +4,7 @@
       <div slot="header" class="clearfix">
         <p>提交网站</p>
       </div>
-      <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm">
+      <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm" label-position="left">
         <el-form-item label="网站名称" prop="name">
           <el-input v-model="ruleForm.name" placeholder="例如：navigation-web" />
         </el-form-item>
@@ -23,8 +23,10 @@
           <el-input v-model="ruleForm.describe" type="textarea" placeholder="例如：一个网站导航和收藏平台（请用中文）" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">立即提交</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <div class="btn-container">
+            <el-button type="primary" @click="submitForm('ruleForm')">立即提交</el-button>
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
+          </div>
         </el-form-item>
       </el-form>
     </el-card>
@@ -115,5 +117,9 @@ export default {
       font-size: 30px;
       line-height: 46px;
     }
+  }
+  .btn-container{
+    white-space:nowrap;
+    margin-left: -100px;
   }
 </style>

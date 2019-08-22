@@ -1,15 +1,15 @@
 import request from '@/utils/request'
 
-export function getSuperMap() {
+export function getSuperMap(data) {
   return request({
-    url: '/superAdmin',
+    url: `/superAdmin?limit=${data.limit}&offset=${data.offset}`,
     method: 'get'
   })
 }
 
-export function getSuperSearch(query) {
+export function getSuperSearch(data) {
   return request({
-    url: `/superAdmin/search/${query}`,
+    url: `/superAdmin/search?query=${data.query}&limit=${data.limit}&offset=${data.offset}`,
     method: 'get'
   })
 }

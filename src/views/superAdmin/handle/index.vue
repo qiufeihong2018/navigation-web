@@ -31,11 +31,12 @@
     </el-table>
     <div class="pagination-container">
       <el-pagination
+        background
         :current-page="currentPage"
-        :page-sizes="[100, 200, 300, 400]"
-        :page-size="100"
+        :page-sizes="[10, 20, 50, 100]"
+        :page-size="10"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400"
+        :total="total"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
@@ -82,9 +83,13 @@ export default {
       form: {},
       formLabelWidth: '120px',
       categoryOptions: [],
-      currentPage: 4,
-      loading: true
-
+      currentPage: 1,
+      loading: true,
+      total: 0,
+      queryData: {
+        limit: 10,
+        offset: 0
+      }
     }
   },
   created() {
@@ -94,10 +99,10 @@ export default {
   },
   methods: {
     getSuperMap() {
-      apiSuperAdmin.getSuperMap().then(res => {
+      apiSuperAdmin.getSuperMap(this.queryData).then(res => {
         this.loading = false
-
         this.tableData = res.data
+        this.total = res.total
       })
     },
     openDialog(nav) {
@@ -149,10 +154,12 @@ export default {
       })
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+      this.queryData.limit = val
+      this.getSuperMap()
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+      this.queryData.offset = (val - 1) * this.queryData.limit
+      this.getSuperMap()
     }
   }
 }

@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getMap() {
+export function getMap(data) {
   return request({
-    url: '/admin',
+    url: `/admin?limit=${data.limit}&offset=${data.offset}`,
     method: 'get'
   })
 }

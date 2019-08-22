@@ -2,8 +2,8 @@
   <div>
     <el-drawer title="搜索网站" :visible.sync="openDrawer" :before-close="closeDrawer" direction="btt" size="50%">
       <div class="search-container">
-        <el-input slot="prepend" v-model="query" placeholder="请输入" @keyup.enter.native="click">
-          <el-button slot="append" icon="el-icon-search" @click.stop="click" />
+        <el-input slot="prepend" v-model="query" placeholder="请输入，例如：ppt" @keyup.enter.native="getSuperSearch">
+          <el-button slot="append" icon="el-icon-search" @click.stop="getSuperSearch" />
         </el-input>
       </div>
       <el-table :data="tableData" stripe style="width: 100%" highlight-current-row>
@@ -28,6 +28,9 @@
           </template>
         </el-table-column>
       </el-table>
+      <div class="pagination-container">
+        <el-pagination small background layout="prev, pager, next" :total="total" page-size="2" @current-change="handleCurrentChange" />
+      </div>
     </el-drawer>
   </div>
 </template>
@@ -43,7 +46,13 @@ export default {
   data() {
     return {
       query: '',
-      tableData: []
+      tableData: [],
+      queryData: {
+        'query': 'ppt',
+        'limit': '2',
+        'offset': '0'
+      },
+      total: 0
     }
   },
   computed: {
@@ -55,10 +64,15 @@ export default {
     closeDrawer() {
       store.dispatch('app/toggle_openDrawer', false)
     },
-    click() {
-      apiSuperAdmin.getSuperSearch(this.query).then(res => {
+    getSuperSearch() {
+      apiSuperAdmin.getSuperSearch(this.queryData).then(res => {
         this.tableData = res.data
+        this.total = res.total
       })
+    },
+    handleCurrentChange(val) {
+      this.queryData.offset = (val - 1) * 2
+      this.getSuperSearch()
     }
   }
 }
@@ -73,7 +87,12 @@ export default {
     }
   }
 
-  .el-drawer.btt{
-        height: 66%!important;
+  .el-drawer.btt {
+    height: 66% !important;
+  }
+
+  .pagination-container {
+    margin: 10px;
+    float: right
   }
 </style>

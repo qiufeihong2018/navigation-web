@@ -162,6 +162,7 @@ export default {
       this.form = nav
     },
     getMap() {
+      console.log(this.currentRoute.toLowerCase())
       apiSuperAdmin.getSuperMap().then(res => {
         this.loading = false
         this.navArr = res.data.filter(item => {
@@ -180,26 +181,6 @@ export default {
           message: `您没有权限删除网站《${nav.name}》`
         })
       })
-      //   apiAdmin.deleteMap(nav._id).then(res => {
-      //     if (res.state === 'ok') {
-      //       this.$notify.success({
-      //         title: '成功',
-      //         message: `删除网站《${nav.name}》成功！`
-      //       })
-      //     } else {
-      //       this.$notify.error({
-      //         title: '失败',
-      //         message: `删除网站《${nav.name}》失败！`
-      //       })
-      //     }
-      //     this.getMap()
-      //   })
-      // }).catch(() => {
-      //   this.$message({
-      //     type: 'info',
-      //     message: '已取消删除'
-      //   })
-      // })
     },
     putMap(form) {
       this.dialogFormVisible = false

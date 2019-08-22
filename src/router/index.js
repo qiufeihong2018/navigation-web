@@ -763,6 +763,16 @@ export const constantRoutes = [{
       title: '超管-操作',
       icon: 'handle'
     }
+  },
+  {
+    path: '/superAdmin/iframeNav',
+    name: 'superAdminIframeNav',
+    hidden: true,
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
+    }
   }
   ]
 }
@@ -798,6 +808,16 @@ export const asyncRoutes = [{
     meta: {
       title: '超管-操作',
       icon: 'handle'
+    }
+  },
+  {
+    path: '/superAdmin/iframeNav',
+    name: 'superAdminIframeNav',
+    hidden: true,
+    component: () => import('@/views/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
     }
   }
   ]

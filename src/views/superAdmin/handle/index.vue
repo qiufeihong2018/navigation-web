@@ -10,12 +10,16 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
     >
-      <el-table-column
-        type="index"
-      />
+      <el-table-column type="index" />
       <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />
       <el-table-column prop="name" label="名字" width="200" show-overflow-tooltip />
-      <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip />
+      <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip>
+        <template slot-scope="slot">
+          <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: slot.row.website }}">
+            {{ slot.row.website }}
+          </router-link>
+        </template>
+      </el-table-column>
       <el-table-column prop="describe" label="描述" show-overflow-tooltip />
       <el-table-column prop="created_at" label="创建时间" width="200" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
@@ -153,7 +157,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
+<style lang="stylus" scoped>
   .table-container {
     margin: 20px
   }
@@ -162,7 +166,8 @@ export default {
     margin: 10px;
     float: right
   }
-  .el-tooltip__popper{
-    width:400px
+
+  .el-tooltip__popper {
+    width: 400px
   }
 </style>

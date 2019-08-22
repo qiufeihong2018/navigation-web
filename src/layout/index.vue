@@ -13,7 +13,7 @@
       <div :class="{'margin-app':fixedHeader}">
         <AppMain />
       </div>
-      <RightPanel v-if="showSettings" :button-top="325" :el-icon="'el-icon-setting'">
+      <RightPanel v-if="showSettings" :button-top="165" :el-icon="'el-icon-setting'">
         <Settings />
       </RightPanel>
       <BottomDrawer />

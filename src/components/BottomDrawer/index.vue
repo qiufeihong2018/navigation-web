@@ -72,4 +72,8 @@ export default {
       margin-bottom: 20px
     }
   }
+
+  .el-drawer.btt{
+        height: 66%!important;
+  }
 </style>

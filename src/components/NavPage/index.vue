@@ -6,43 +6,58 @@
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)"
   >
-    <waterfall
-      :col="col"
-      :width="itemWidth"
-      :gutter-width="gutterWidth"
-      :data="navArr"
-      @loadmore="loadmore"
-      @scroll="scroll"
-    >
-      <template>
-        <div v-for="(nav,key) in navArr" :key="key" style="margin-top: 10px;">
-          <el-card :body-style="{ padding: '10px' }" shadow="hover">
-            <img :src="nav.logo" class="image" alt="加载错误">
-            <el-form label-width="100px" label-position="left">
-              <el-form-item label="网站名称">
-                {{ nav.name }}
-              </el-form-item>
-              <el-form-item label="iframe链接">
-                <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">
-                  {{ nav.website }}
-                </router-link>
-              </el-form-item>
-              <el-form-item label="新窗口链接">
-                <a class="font-website" :href="nav.website" target="_blank">{{ nav.website }}</a>
-              </el-form-item>
-              <el-form-item label="网站描述">
-                <div>{{ nav.describe || '需要您添加网站描述' }}</div>
-              </el-form-item>
-            </el-form>
-            <div class="bottom clearfix">
-              <time class="time">创建时间：{{ nav.created_at|timeTrans }}</time>
-              <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
-              <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
-            </div>
-          </el-card>
-        </div>
-      </template>
-    </waterfall>
+    <template v-if="navArr.length>0">
+      <waterfall
+        :col="col"
+        :width="itemWidth"
+        :gutter-width="gutterWidth"
+        :data="navArr"
+        @loadmore="loadmore"
+        @scroll="scroll"
+      >
+        <template>
+          <div v-for="(nav,key) in navArr" :key="key" style="margin-top: 10px;">
+            <el-card :body-style="{ padding: '10px' }" shadow="hover">
+              <img :src="nav.logo" class="image" alt="加载错误">
+              <el-form label-width="100px" label-position="left">
+                <el-form-item label="网站名称">
+                  {{ nav.name }}
+                </el-form-item>
+                <el-form-item label="iframe链接">
+                  <router-link class="font-website" :to="{ path: 'iframeNav', query: { website: nav.website }}">
+                    {{ nav.website }}
+                  </router-link>
+                </el-form-item>
+                <el-form-item label="新窗口链接">
+                  <a class="font-website" :href="nav.website" target="_blank">{{ nav.website }}</a>
+                </el-form-item>
+                <el-form-item label="网站描述">
+                  <div>{{ nav.describe || '需要您添加网站描述' }}</div>
+                </el-form-item>
+              </el-form>
+              <div class="bottom clearfix">
+                <time class="time">创建时间：{{ nav.created_at|timeTrans }}</time>
+                <el-button type="text" class="button" @click="openDialog(nav)">编辑</el-button>
+                <el-button type="text" class="button" @click="deleteMap(nav)">删除</el-button>
+              </div>
+            </el-card>
+          </div>
+        </template>
+      </waterfall>
+      <div class="pagination-container">
+        <el-pagination
+          small
+          background
+          layout="prev, pager, next"
+          :total="total"
+          page-size.number="10"
+          @current-change="handleCurrentChange"
+        />
+      </div>
+    </template>
+    <div v-else>
+      <img src="./noData.png" style="margin-left: -102px;">
+    </div>
     <el-dialog title="编辑网站" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="网站名称" prop="name">
@@ -111,8 +126,14 @@ export default {
         'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         background: '#e7eaf1' // 按钮的背景颜色 The background color of the button
       },
-      currentRoute: this.$router.currentRoute.name,
-      loading: true
+      currentRoute: this.$router.currentRoute.path.split('/'),
+      loading: true,
+      total: 0,
+      queryData: {
+        limit: 10,
+        offset: 0,
+        category: 'recommendationFront-end'
+      }
     }
   },
   computed: {
@@ -146,30 +167,24 @@ export default {
     ])
   },
   created() {
-    this.getMap()
+    this.getSuperMap()
     const routes = this.$router.options.routes
-    this.categoryOptions = getOption(routes)
+    this.categoryOptions = getOption('label', routes)
   },
   methods: {
-    scroll(scrollData) {
-      // console.log(scrollData)
-    },
-    loadmore(index) {
-      // console.log('没有了')
-    },
-    openDialog(nav) {
-      this.dialogFormVisible = true
-      this.form = nav
-    },
-    getMap() {
-      console.log(this.currentRoute.toLowerCase())
-      apiSuperAdmin.getSuperMap().then(res => {
+    getSuperMap() {
+      this.queryData.category = this.currentRoute[this.currentRoute.length - 1]
+      apiSuperAdmin.getSuperMap(this.queryData).then(res => {
         this.loading = false
-        this.navArr = res.data.filter(item => {
-          return item.category.toLowerCase() === this.currentRoute.toLowerCase()
-        })
+        this.total = res.total
+        this.navArr = res.data
+        // Front end classification
+        // this.navArr = res.data.filter(item => {
+        //   return item.category.toLowerCase() === this.currentRoute.toLowerCase()
+        // })
       })
     },
+
     deleteMap(nav) {
       this.$confirm('此操作将永久删除该网站, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -197,8 +212,22 @@ export default {
             message: `编辑网站《${form.name}》失败！`
           })
         }
-        this.getMap()
+        this.getSuperMap()
       })
+    },
+    handleCurrentChange(val) {
+      this.queryData.offset = (val - 1) * 10
+      this.getSuperMap()
+    },
+    scroll(scrollData) {
+      // console.log(scrollData)
+    },
+    loadmore(index) {
+      // console.log('没有了')
+    },
+    openDialog(nav) {
+      this.dialogFormVisible = true
+      this.form = nav
     }
   }
 }

@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getSuperMap(data) {
   return request({
-    url: `/superAdmin?limit=${data.limit}&offset=${data.offset}`,
+    url: `/superAdmin?limit=${data.limit}&offset=${data.offset}&category=${data.category}`,
     method: 'get'
   })
 }

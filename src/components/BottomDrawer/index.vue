@@ -2,7 +2,7 @@
   <div>
     <el-drawer title="搜索网站" :visible.sync="openDrawer" :before-close="closeDrawer" direction="btt" size="50%">
       <div class="search-container">
-        <el-input slot="prepend" v-model="query" placeholder="请输入，例如：ppt" @keyup.enter.native="getSuperSearch">
+        <el-input slot="prepend" v-model="queryData.query" placeholder="请输入，例如：ppt" @keyup.enter.native="getSuperSearch">
           <el-button slot="append" icon="el-icon-search" @click.stop="getSuperSearch" />
         </el-input>
       </div>
@@ -29,7 +29,7 @@
         </el-table-column>
       </el-table>
       <div class="pagination-container">
-        <el-pagination small background layout="prev, pager, next" :total="total" page-size="2" @current-change="handleCurrentChange" />
+        <el-pagination small background layout="prev, pager, next" :total="total" page-size.number="2" @current-change="handleCurrentChange" />
       </div>
     </el-drawer>
   </div>
@@ -45,12 +45,11 @@ export default {
   name: 'BottomDrawer',
   data() {
     return {
-      query: '',
       tableData: [],
       queryData: {
-        'query': 'ppt',
-        'limit': '2',
-        'offset': '0'
+        query: 'ppt',
+        limit: 2,
+        offset: 0
       },
       total: 0
     }

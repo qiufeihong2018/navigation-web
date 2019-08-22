@@ -72,7 +72,7 @@ export default {
   },
   created() {
     const routes = this.$router.options.routes
-    this.categoryOptions = getOption(routes)
+    this.categoryOptions = getOption('label', routes)
   },
   methods: {
     submitForm(formName) {

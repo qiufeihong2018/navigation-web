@@ -145,19 +145,19 @@ export function removeClass(ele, cls) {
 /**
  * get categoryOptions from routes
  * @param {HTMLElement} routes
+ * @param {HTMLElement} tag: text/label
  */
-export function getOption(routes) {
+export function getOption(tag, routes) {
   let categoryOptions = []
   for (let i = 0; i < routes.length; i++) {
     if (routes[i].path !== '/redirect') {
       const children = routes[i].children
       for (const j in children) {
         const obj = {
-          value: '',
-          label: ''
+          value: ''
         }
         obj.value = children[j].path
-        obj.label = children[j].meta.title
+        obj[tag] = children[j].meta.title
         categoryOptions.push(obj)
       }
     }

@@ -1,5 +1,11 @@
 <template>
   <div class="table-container">
+    <template v-if="categoryOptions">
+      <el-select v-model="queryData.category" placeholder="请选择网站分类" @change="changeCategory">
+        <el-option v-for="item in categoryOptions" :key="item.value" :label="item.label" :value="item.value" />
+      </el-select>
+    </template>
+
     <el-table
       v-loading.fullscreen.lock="loading"
       :data="tableData"
@@ -88,16 +94,20 @@ export default {
       total: 0,
       queryData: {
         limit: 10,
-        offset: 0
+        offset: 0,
+        category: 'recommendationFront-end'
       }
     }
   },
   created() {
     this.getSuperMap()
     const routes = this.$router.options.routes
-    this.categoryOptions = getOption(routes)
+    this.categoryOptions = getOption('label', routes)
   },
   methods: {
+    changeCategory() {
+      this.getSuperMap()
+    },
     getSuperMap() {
       apiSuperAdmin.getSuperMap(this.queryData).then(res => {
         this.loading = false
@@ -166,7 +176,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
   .table-container {
-    margin: 20px
+    margin: 100px 20px 20px 20px
   }
 
   .pagination-container {

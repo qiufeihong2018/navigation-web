@@ -231,6 +231,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>
@@ -274,6 +275,7 @@ export default {
   }
 
   .el-message-box {
-    margin-top: 15vh;
+    width: 46vh;
   }
+
 </style>

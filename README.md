@@ -24,6 +24,7 @@ English | [简体中文](./README-zh.md)
 ## Install
 
 ```sh
+
 npm install
 
 npm run dev
@@ -42,15 +43,17 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Operational Guidelines
 
-![Operational Guidelines](http://images.qiufeihong.top/navigation.webm)
+<video id="video" controls="" preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png">
+      <source id="webm" src="http://images.qiufeihong.top/navigation.webm" type="video/webm">
+</video>
 
 ## Website screenshot
 
-![Site navigation block waterfall flow](http://puz03r2zg.bkt.clouddn.com/web.png)
+![Site navigation block waterfall flow](http://images.qiufeihong.top/web.png)
 
-![Website nested iframe](http://puz03r2zg.bkt.clouddn.com/web2.png)
+![Website nested iframe](http://images.qiufeihong.top/web2.png)
 
-![Website submission](http://puz03r2zg.bkt.clouddn.com/web3.png)
+![Website submission](http://images.qiufeihong.top/web3.png)
 
 ## Online Demo
 

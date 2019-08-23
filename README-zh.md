@@ -43,7 +43,7 @@ npm run dev
 
 ## 操作指南
 
-![操作指南](http://images.qiufeihong.top/navigation.webm)
+[操作指南](http://images.qiufeihong.top/navigation.webm)
 
 ## 网站截图
 
@@ -65,5 +65,5 @@ npm run dev
 
 如果你发现这个项目很有用，你可以给作者买一杯果汁 :tropical_drink:
 
-![donate](http://puz03r2zg.bkt.clouddn.com/pay.png)
+![donate](http://images.qiufeihong.top/pay.png)
 

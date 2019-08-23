@@ -65,5 +65,5 @@ Give a ⭐️ if this project helped you!
 
 If you find this project useful, you can buy author a glass of juice :tropical_drink:
 
-![donate](http://puz03r2zg.bkt.clouddn.com/pay.png)
+![donate](http://images.qiufeihong.top/pay.png)
 

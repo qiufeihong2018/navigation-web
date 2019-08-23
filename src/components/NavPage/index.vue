@@ -50,7 +50,7 @@
           background
           layout="prev, pager, next"
           :total="total"
-          page-size.number="10"
+          :page-size="10"
           @current-change="handleCurrentChange"
         />
       </div>

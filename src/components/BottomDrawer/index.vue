@@ -29,7 +29,7 @@
         </el-table-column>
       </el-table>
       <div class="pagination-container">
-        <el-pagination small background layout="prev, pager, next" :total="total" page-size.number="2" @current-change="handleCurrentChange" />
+        <el-pagination small background layout="prev, pager, next" :total="total" :page-size="2" @current-change="handleCurrentChange" />
       </div>
     </el-drawer>
   </div>

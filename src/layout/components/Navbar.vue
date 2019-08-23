@@ -30,8 +30,11 @@
           <router-link to="/submit/submit">
             <el-dropdown-item>Submit</el-dropdown-item>
           </router-link>
+          <a target="_blank" href="https://github.com/qiufeihong2018/navigation-server">
+            <el-dropdown-item>Github(server)</el-dropdown-item>
+          </a>
           <a target="_blank" href="https://github.com/qiufeihong2018/navigation-web">
-            <el-dropdown-item>Github</el-dropdown-item>
+            <el-dropdown-item>Github(web)</el-dropdown-item>
           </a>
           <el-dropdown-item divided>
             <span style="display:block;" @click="logout">Log Out</span>

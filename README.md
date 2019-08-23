@@ -43,8 +43,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Operational Guidelines
 
-
-<video src="http://images.qiufeihong.top/navigation.webm" width="320" height="180" controls="controls"></video>
+[Operational Guidelines Video](http://images.qiufeihong.top/navigation.webm)
 
 ## Website screenshot
 

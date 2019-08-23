@@ -43,9 +43,13 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Operational Guidelines
 
-<video id="video" controls="" preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png">
-      <source id="webm" src="http://images.qiufeihong.top/navigation.webm" type="video/webm">
-</video>
+<iframe 
+    height=450 
+    width=800 
+    src="http://images.qiufeihong.top/navigation.webm" 
+    frameborder=0 
+    allowfullscreen>
+</iframe>
 
 ## Website screenshot
 

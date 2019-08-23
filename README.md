@@ -43,13 +43,12 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Operational Guidelines
 
-<iframe 
-    height=450 
-    width=800 
-    src="http://images.qiufeihong.top/navigation.webm" 
-    frameborder=0 
-    allowfullscreen>
-</iframe>
+
+<video id="video" controls="" preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png">
+      <source id="webm" src="http://images.qiufeihong.top/navigation.webm" type="video/webm">
+      <p>Your user agent does not support the HTML5 Video element.</p>
+</video>
+
 
 ## Website screenshot
 

@@ -40,6 +40,10 @@ npm run dev
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/qiufeihong2018/navigation-web/issues).
 
+## Operational Guidelines
+
+![Operational Guidelines](http://images.qiufeihong.top/navigation.webm)
+
 ## Website screenshot
 
 ![Site navigation block waterfall flow](http://puz03r2zg.bkt.clouddn.com/web.png)

@@ -27,7 +27,7 @@
         <el-table-column fixed="right" label="操作" width="200">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="postSuperMap(scope.row)">添加</el-button>
-            <el-button type="text" size="small" @click="deleteMap(scope.row)">取消</el-button>
+            <el-button type="text" size="small" @click="deleteMap(scope.row,'添加')">取消</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -61,6 +61,7 @@
         <el-table-column fixed="right" label="操作" width="200">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="putSuperMap(scope.row)">修改</el-button>
+            <el-button type="text" size="small" @click="deleteMap(scope.row,'修改')">取消</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -94,9 +95,15 @@ export default {
       loading: true,
       totalAdd: 0,
       totalPut: 0,
-      queryData: {
+      addQueryData: {
         limit: 5,
-        offset: 0
+        offset: 0,
+        tag: 'add'
+      },
+      putQueryData: {
+        limit: 5,
+        offset: 0,
+        tag: 'put'
       }
     }
   },
@@ -105,7 +112,6 @@ export default {
   },
   methods: {
     putSuperMap(form) {
-      this.dialogFormVisible = false
       apiSuperAdmin.putSuperMap(form._id, form).then(res => {
         if (res.state === 'ok') {
           this.$notify.success({
@@ -119,39 +125,6 @@ export default {
           })
         }
         this.getMap()
-      })
-    },
-    getMap() {
-      apiAdmin.getMap(this.queryData).then(res => {
-        this.loading = false
-        this.totalAdd = res.total
-        this.tableAddData = res.data.filter(item => {
-          return !item.way
-        })
-        this.tablePutData = res.data.filter(item => {
-          return item.way
-        })
-      })
-    },
-    deleteMap(nav) {
-      apiAdmin.deleteMap(nav._id).then(res => {
-        if (res.state === 'ok') {
-          this.$notify.success({
-            title: '成功',
-            message: `添加网站《${nav.name}》取消！`
-          })
-        } else {
-          this.$notify.error({
-            title: '失败',
-            message: `取消网站《${nav.name}》失败！`
-          })
-        }
-        this.getMap()
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消此操作'
-        })
       })
     },
     postSuperMap(nav) {
@@ -170,20 +143,53 @@ export default {
         this.getMap()
       })
     },
+    getMap() {
+      apiAdmin.getMap(this.addQueryData).then(res => {
+        this.loading = false
+        this.totalAdd = res.total
+        this.tableAddData = res.data
+      })
+      apiAdmin.getMap(this.putQueryData).then(res => {
+        this.loading = false
+        this.totalPut = res.total
+        this.tablePutData = res.data
+      })
+    },
+    deleteMap(nav, tag) {
+      apiAdmin.deleteMap(nav._id).then(res => {
+        if (res.state === 'ok') {
+          this.$notify.success({
+            title: '成功',
+            message: `${tag}网站《${nav.name}》取消！`
+          })
+        } else {
+          this.$notify.error({
+            title: '失败',
+            message: `取消网站《${nav.name}》失败！`
+          })
+        }
+        this.getMap()
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消此操作'
+        })
+      })
+    },
     handleSizeAdd(val) {
-      this.queryData.limit = val
+      this.addQueryData.limit = val
       this.getMap()
     },
     handleCurrentAdd(val) {
-      this.queryData.offset = (val - 1) * this.queryData.limit
+      this.addQueryData.offset = (val - 1) * this.addQueryData.limit
       this.getMap()
     },
     handleSizePut(val) {
-      this.queryData.limit = val
+      this.putQueryData.limit = val
       this.getMap()
     },
     handleCurrentPut(val) {
-      this.queryData.offset = (val - 1) * this.queryData.limit
+      this.putQueryData.offset = (val - 1) * this.putQueryData.limit
       this.getMap()
     }
   }

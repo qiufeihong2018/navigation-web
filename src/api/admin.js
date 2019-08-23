@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getMap(data) {
   return request({
-    url: `/admin?limit=${data.limit}&offset=${data.offset}`,
+    url: `/admin?limit=${data.limit}&offset=${data.offset}&tag=${data.tag}`,
     method: 'get'
   })
 }

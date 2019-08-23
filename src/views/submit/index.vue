@@ -48,7 +48,8 @@ export default {
         category: '',
         website: '',
         describe: '',
-        logo: ''
+        logo: '',
+        way: 'add'
       },
       rules: {
         name: [{

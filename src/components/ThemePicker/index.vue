@@ -3,6 +3,8 @@
     v-model="theme"
     :predefine="['#409EFF', '#1890ff', '#304156','#212121','#11a983', '#13c2c2', '#6959CD', '#f5222d', ]"
     class="theme-picker"
+    size="medium"
+    color-format="hex"
     popper-class="theme-picker-dropdown"
   />
 </template>
@@ -35,7 +37,6 @@ export default {
       if (typeof val !== 'string') return
       const themeCluster = this.getThemeCluster(val.replace('#', ''))
       const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
-      console.log(themeCluster, originalCluster)
 
       const $message = this.$message({
         message: '  Compiling the theme',

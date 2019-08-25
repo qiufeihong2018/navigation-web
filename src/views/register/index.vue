@@ -10,7 +10,8 @@
     >
 
       <div class="title-container">
-        <h3 class="title">register Form</h3>
+        <img src="@/assets/navigation.png">
+        <h3 class="title">注册</h3>
       </div>
 
       <el-form-item prop="username">
@@ -126,7 +127,7 @@ export default {
   /* 修复input 背景不协调 和光标变色 */
   /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
-  $bg:#283443;
+  $bg:#002140;
   $light_gray:#fff;
   $cursor: #fff;
 
@@ -161,8 +162,7 @@ export default {
     }
 
     .el-form-item {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.1);
+      border: 1px solid #606266;
       border-radius: 5px;
       color: #454545;
     }
@@ -171,7 +171,7 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-  $bg:#2d3a4b;
+  $bg:#002140;
   $dark_gray:#889aa4;
   $light_gray:#eee;
 
@@ -185,12 +185,13 @@ export default {
       position: relative;
       width: 520px;
       max-width: 100%;
-      padding: 160px 35px 0;
+        padding: 85px 18px;
       margin: 0 auto;
       overflow: hidden;
     }
 
     .tips {
+    float: right;
       font-size: 14px;
       color: #fff;
       margin-bottom: 10px;
@@ -212,12 +213,12 @@ export default {
 
     .title-container {
       position: relative;
+        text-align: center;
 
       .title {
         font-size: 26px;
         color: $light_gray;
         margin: 0px auto 40px auto;
-        text-align: center;
         font-weight: bold;
       }
     }

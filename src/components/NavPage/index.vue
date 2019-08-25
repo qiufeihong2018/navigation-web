@@ -151,7 +151,7 @@ export default {
         return (0.885 * (document.documentElement.clientWidth / 1))
       }
       if (this.sidebar.opened === true) {
-        return (0.82 * (document.documentElement.clientWidth / 3))
+        return (0.8 * (document.documentElement.clientWidth / 3))
       }
       return (0.9 * (document.documentElement.clientWidth / 4))
     },

@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'navigation-web',
+  title: 'Navigation',
 
   /**
    * @type {boolean} true | false

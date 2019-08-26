@@ -56,7 +56,7 @@
       </div>
     </template>
     <div v-else>
-      <img src="./noData.png" style="margin-left: -102px;">
+      <img src="@/assets/noData.png" style="margin-left: -102px;">
     </div>
     <el-dialog title="编辑网站" :visible.sync="dialogFormVisible">
       <el-form :model="form">

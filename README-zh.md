@@ -41,9 +41,14 @@ npm run dev
 
 欢迎提供贡献，问题和功能请求！<br />请随时查看 [issues page](https://github.com/qiufeihong2018/navigation-web/issues).
 
-## 操作指南
+## 实现功能
 
-[操作指南](http://images.qiufeihong.top/navigation.webm)
+[网站CRUD](http://images.qiufeihong.top/nAdd.webm)
+
+[登录登出](http://images.qiufeihong.top/nLogin.webm)
+
+[搜索](http://images.qiufeihong.top/nSearch.webm)
+
 
 ## 网站截图
 

@@ -47,11 +47,11 @@ npm run dev
 
 ## 网站截图
 
-![网站导航块瀑布流](http://images.qiufeihong.top/web1.png)
+![网站导航块瀑布流](http://images.qiufeihong.top/n1.png)
 
-![网站嵌套iframe](http://images.qiufeihong.top/web2.png)
+![网站嵌套iframe](http://images.qiufeihong.top/n2.png)
 
-![网站提交](http://images.qiufeihong.top/web3.png)
+![网站提交](http://images.qiufeihong.top/n3.png)
 
 ## 在线Demo
 

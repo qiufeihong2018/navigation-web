@@ -47,11 +47,11 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Website screenshot
 
-![Site navigation block waterfall flow](http://images.qiufeihong.top/web1.png)
+![Site navigation block waterfall flow](http://images.qiufeihong.top/n1.png)
 
-![Website nested iframe](http://images.qiufeihong.top/web2.png)
+![Website nested iframe](http://images.qiufeihong.top/n2.png)
 
-![Website submission](http://images.qiufeihong.top/web3.png)
+![Website submission](http://images.qiufeihong.top/n3.png)
 
 ## Online Demo
 

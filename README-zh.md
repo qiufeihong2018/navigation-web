@@ -47,7 +47,7 @@ npm run dev
 
 ## 网站截图
 
-![网站导航块瀑布流](http://images.qiufeihong.top/web.png)
+![网站导航块瀑布流](http://images.qiufeihong.top/web1.png)
 
 ![网站嵌套iframe](http://images.qiufeihong.top/web2.png)
 

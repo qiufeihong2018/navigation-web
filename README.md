@@ -47,7 +47,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Website screenshot
 
-![Site navigation block waterfall flow](http://images.qiufeihong.top/web.png)
+![Site navigation block waterfall flow](http://images.qiufeihong.top/web1.png)
 
 ![Website nested iframe](http://images.qiufeihong.top/web2.png)
 

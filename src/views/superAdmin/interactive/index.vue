@@ -13,7 +13,12 @@
         element-loading-background="rgba(0, 0, 0, 0.8)"
       >
         <el-table-column type="index" />
-        <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />
+        <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip>
+          <template slot-scope="scope">
+            <el-input v-model="scope.row.category" size="small" placeholder="请输入内容" />
+            <span>{{ scope.row.category }}</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="name" label="名字" width="200" show-overflow-tooltip />
         <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip>
           <template slot-scope="slot">
@@ -47,7 +52,12 @@
       <H3>修改的网站</H3>
       <el-table :data="tablePutData" stripe style="width: 100%" highlight-current-row>
         <el-table-column type="index" />
-        <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />
+        <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip>
+          <template slot-scope="scope">
+            <el-input v-model="scope.row.category" size="small" placeholder="请输入内容" />
+            <span>{{ scope.row.category }}</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="name" label="名字" width="200" show-overflow-tooltip />
         <el-table-column prop="website" label="网站链接" width="200" show-overflow-tooltip>
           <template slot-scope="slot">
@@ -104,7 +114,8 @@ export default {
         limit: 5,
         offset: 0,
         tag: 'put'
-      }
+      },
+      reg: /[\u4e00-\u9fa5]/g
     }
   },
   created() {
@@ -147,6 +158,12 @@ export default {
       apiAdmin.getMap(this.addQueryData).then(res => {
         this.loading = false
         this.totalAdd = res.total
+        for (let i = 0; i < res.data.length; i++) {
+          console.log(this.reg.test(res.data[i].category))
+          // if(this.reg.test(res.data[i])){
+          //   console.log('dfasdf')
+          // }
+        }
         this.tableAddData = res.data
       })
       apiAdmin.getMap(this.putQueryData).then(res => {
@@ -203,5 +220,17 @@ export default {
   .pagination-container {
     margin: 20px;
     float: right
+  }
+
+  .el-table .el-input {
+    display: none
+  }
+
+  .el-table .current-row .el-input {
+    display: block
+  }
+
+  .el-table .current-row .el-input+span {
+    display: none
   }
 </style>

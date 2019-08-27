@@ -9,7 +9,7 @@
           <el-input v-model="ruleForm.name" placeholder="例如：navigation-web" />
         </el-form-item>
         <el-form-item label="网站分类" prop="category">
-          <el-select v-model="ruleForm.category" placeholder="请选择网站分类">
+          <el-select v-model="ruleForm.category" placeholder="请选择网站分类" allow-create filterable default-first-option>
             <el-option v-for="(item,key) in categoryOptions" :key="key" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
@@ -77,6 +77,7 @@ export default {
   },
   methods: {
     submitForm(formName) {
+      console.log(this.ruleForm)
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.ruleForm.logo === '') {

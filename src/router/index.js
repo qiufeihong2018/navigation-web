@@ -163,6 +163,15 @@ export const constantRoutes = [{
     }
   },
   {
+    path: 'blogFront-end',
+    name: 'BlogFront-end',
+    component: () => import('@/views/front-end/blog/index'),
+    meta: {
+      title: '前端-技术博客',
+      icon: 'blog'
+    }
+  },
+  {
     path: '/iframeNav',
     name: 'frontIframeNav',
     hidden: true,

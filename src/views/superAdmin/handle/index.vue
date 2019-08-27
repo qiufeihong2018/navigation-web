@@ -53,7 +53,7 @@
           <el-input v-model="form.name" />
         </el-form-item>
         <el-form-item label="网站分类" prop="category">
-          <el-select v-model="form.category" placeholder="请选择网站分类">
+          <el-select v-model="form.category" placeholder="请选择网站分类" allow-create filterable default-first-option>
             <el-option v-for="item in categoryOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>

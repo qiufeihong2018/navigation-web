@@ -6,6 +6,11 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
+// set ElementUI lang to EN
+Vue.use(ElementUI, {
+  locale
+})
+
 import '@/styles/index.scss' // global css
 
 import App from './App'
@@ -14,6 +19,9 @@ import router from './router'
 
 import waterfall from 'vue-waterfall2'
 Vue.use(waterfall)
+// Global registration
+import NavPage from '@/components/NavPage'
+Vue.component('NavPage', NavPage)
 
 import '@/icons' // icon
 import { permission } from '@/permission'
@@ -21,11 +29,6 @@ import { permission } from '@/permission'
 if (process.env.NODE_ENV === 'production') {
   permission()
 }
-
-// set ElementUI lang to EN
-Vue.use(ElementUI, {
-  locale
-})
 
 Vue.config.productionTip = false
 

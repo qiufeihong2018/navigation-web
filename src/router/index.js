@@ -172,6 +172,15 @@ export const constantRoutes = [{
     }
   },
   {
+    path: 'githubRepositoryFront-end',
+    name: 'GithubRepositoryFront-end',
+    component: () => import('@/views/front-end/githubRepository/index'),
+    meta: {
+      title: '前端-Github仓库',
+      icon: 'githubRepository'
+    }
+  },
+  {
     path: '/iframeNav',
     name: 'frontIframeNav',
     hidden: true,

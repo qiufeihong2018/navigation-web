@@ -2,6 +2,11 @@ module.exports = {
   title: 'Navigation',
 
   /**
+   * @type {number} 9528
+   * @description port number
+   */
+  port: 9528,
+  /**
    * @type {boolean} true | false
    * @description Whether show the settings right-panel
    */

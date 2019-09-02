@@ -123,7 +123,7 @@ export default {
         width: '50px',
         height: '50px',
         'border-radius': '50%',
-        'line-height': '50px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
+        'line-height': '50px' // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         // background: '#409EFF' // 按钮的背景颜色 The background color of the button
       },
       currentRoute: this.$router.currentRoute.path.split('/'),

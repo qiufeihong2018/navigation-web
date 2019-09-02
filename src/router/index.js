@@ -5,7 +5,10 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-
+// get Nav template
+function getNav() {
+  return () => import('@/page/NavPage/index')
+}
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -36,21 +39,21 @@ export const constantRoutes = [{
   hidden: true,
   children: [{
     path: '/redirect/:path*',
-    component: () => import('@/views/redirect/index')
+    component: () => import('@/page/redirect/index')
   }]
 }, {
   path: '/login',
-  component: () => import('@/views/login/index'),
+  component: () => import('@/page/login/index'),
   hidden: true
 },
 {
   path: '/register',
-  component: () => import('@/views/register/index'),
+  component: () => import('@/page/register/index'),
   hidden: true
 },
 {
   path: '/404',
-  component: () => import('@/views/404'),
+  component: () => import('@/page/404'),
   hidden: true
 },
 
@@ -66,7 +69,7 @@ export const constantRoutes = [{
   children: [{
     path: 'recommendationFront-end',
     name: 'RecommendationFront-end',
-    component: () => import('@/views/front-end/recommendation/index'),
+    component: getNav(),
     meta: {
       title: '前端-热门推荐',
       icon: 'recommendation'
@@ -75,7 +78,7 @@ export const constantRoutes = [{
   {
     path: 'frontFrameFront-end',
     name: 'FrontFrameFront-end',
-    component: () => import('@/views/front-end/frontFrame/index'),
+    component: getNav(),
     meta: {
       title: '前端-前端框架',
       icon: 'frontFrame'
@@ -84,7 +87,7 @@ export const constantRoutes = [{
   {
     path: 'forumCommunityFront-end',
     name: 'ForumCommunityFront-end',
-    component: () => import('@/views/front-end/forumCommunity/index'),
+    component: getNav(),
     meta: {
       title: '前端-论坛社区',
       icon: 'forumCommunity'
@@ -93,7 +96,7 @@ export const constantRoutes = [{
   {
     path: 'learningPlatformFront-end',
     name: 'LearningPlatformFront-end',
-    component: () => import('@/views/front-end/learningPlatform/index'),
+    component: getNav(),
     meta: {
       title: '前端-学习平台',
       icon: 'learningPlatform'
@@ -102,7 +105,7 @@ export const constantRoutes = [{
   {
     path: 'onlineProgrammingFront-end',
     name: 'OnlineProgrammingFront-end',
-    component: () => import('@/views/front-end/onlineProgramming/index'),
+    component: getNav(),
     meta: {
       title: '前端-在线编程',
       icon: 'onlineProgramming'
@@ -111,7 +114,7 @@ export const constantRoutes = [{
   {
     path: 'javaScriptFrameworkFront-end',
     name: 'JavaScriptFrameworkFront-end',
-    component: () => import('@/views/front-end/javaScriptFramework/index'),
+    component: getNav(),
     meta: {
       title: '前端-JavaScript框架',
       icon: 'javaScriptFramework'
@@ -120,7 +123,7 @@ export const constantRoutes = [{
   {
     path: 'codeHostingFront-end',
     name: 'CodeHostingFront-end',
-    component: () => import('@/views/front-end/codeHosting/index'),
+    component: () => import('@/page/NavPage/index'),
     meta: {
       title: '前端-代码托管',
       icon: 'codeHosting'
@@ -129,7 +132,7 @@ export const constantRoutes = [{
   {
     path: 'inspectionTestFront-end',
     name: 'InspectionTestFront-end',
-    component: () => import('@/views/front-end/inspectionTest/index'),
+    component: getNav(),
     meta: {
       title: '前端-检查测试',
       icon: 'inspectionTest'
@@ -138,7 +141,7 @@ export const constantRoutes = [{
   {
     path: 'CSSFrameworkFront-end',
     name: 'CSSFrameworkFront-end',
-    component: () => import('@/views/front-end/CSSFramework/index'),
+    component: getNav(),
     meta: {
       title: '前端-CSS框架',
       icon: 'CSSFramework'
@@ -147,7 +150,7 @@ export const constantRoutes = [{
   {
     path: 'techDocFront-end',
     name: 'TechDocFront-end',
-    component: () => import('@/views/front-end/techDoc/index'),
+    component: getNav(),
     meta: {
       title: '前端-技术文档',
       icon: 'techDoc'
@@ -156,7 +159,7 @@ export const constantRoutes = [{
   {
     path: 'buildToolFront-end',
     name: 'BuildToolFront-end',
-    component: () => import('@/views/front-end/buildTool/index'),
+    component: getNav(),
     meta: {
       title: '前端-构建工具',
       icon: 'buildTool'
@@ -165,7 +168,7 @@ export const constantRoutes = [{
   {
     path: 'blogFront-end',
     name: 'BlogFront-end',
-    component: () => import('@/views/front-end/blog/index'),
+    component: getNav(),
     meta: {
       title: '前端-技术博客',
       icon: 'blog'
@@ -174,7 +177,7 @@ export const constantRoutes = [{
   {
     path: 'githubRepositoryFront-end',
     name: 'GithubRepositoryFront-end',
-    component: () => import('@/views/front-end/githubRepository/index'),
+    component: getNav(),
     meta: {
       title: '前端-Github仓库',
       icon: 'githubRepository'
@@ -184,7 +187,7 @@ export const constantRoutes = [{
     path: '/iframeNav',
     name: 'frontIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -205,7 +208,7 @@ export const constantRoutes = [{
   children: [{
     path: 'recommendationBack-end',
     name: 'RecommendationBack-end',
-    component: () => import('@/views/back-end/recommendation/index'),
+    component: getNav(),
     meta: {
       title: '后端-热门推荐',
       icon: 'recommendation'
@@ -214,7 +217,7 @@ export const constantRoutes = [{
   {
     path: 'frontFrameBack-end',
     name: 'FrontFrameBack-end',
-    component: () => import('@/views/back-end/frontFrame/index'),
+    component: getNav(),
     meta: {
       title: '后端-后端框架',
       icon: 'frontFrame'
@@ -223,7 +226,7 @@ export const constantRoutes = [{
   {
     path: 'forumCommunityBack-end',
     name: 'ForumCommunityBack-end',
-    component: () => import('@/views/back-end/forumCommunity/index'),
+    component: getNav(),
     meta: {
       title: '后端-论坛社区',
       icon: 'forumCommunity'
@@ -232,7 +235,7 @@ export const constantRoutes = [{
   {
     path: 'learningPlatformBack-end',
     name: 'LearningPlatformBack-end',
-    component: () => import('@/views/back-end/learningPlatform/index'),
+    component: getNav(),
     meta: {
       title: '后端-学习平台',
       icon: 'learningPlatform'
@@ -241,7 +244,7 @@ export const constantRoutes = [{
   {
     path: 'onlineProgrammingBack-end',
     name: 'OnlineProgrammingBack-end',
-    component: () => import('@/views/back-end/onlineProgramming/index'),
+    component: getNav(),
     meta: {
       title: '后端-在线编程',
       icon: 'onlineProgramming'
@@ -250,7 +253,7 @@ export const constantRoutes = [{
   {
     path: 'personalFrameworkBack-end',
     name: 'PersonalFrameworkBack-end',
-    component: () => import('@/views/back-end/personalFramework/index'),
+    component: getNav(),
     meta: {
       title: '后端-个人框架',
       icon: 'personalFramework'
@@ -259,7 +262,7 @@ export const constantRoutes = [{
   {
     path: 'codeHostingBack-end',
     name: 'CodeHostingBack-end',
-    component: () => import('@/views/back-end/codeHosting/index'),
+    component: getNav(),
     meta: {
       title: '后端-代码托管',
       icon: 'codeHosting'
@@ -268,7 +271,7 @@ export const constantRoutes = [{
   {
     path: 'inspectionTestBack-end',
     name: 'InspectionTestBack-end',
-    component: () => import('@/views/back-end/inspectionTest/index'),
+    component: getNav(),
     meta: {
       title: '后端-检查测试',
       icon: 'inspectionTest'
@@ -277,7 +280,7 @@ export const constantRoutes = [{
   {
     path: 'contentManagementBack-end',
     name: 'ContentManagementBack-end',
-    component: () => import('@/views/back-end/contentManagement/index'),
+    component: getNav(),
     meta: {
       title: '后端-内容管理',
       icon: 'contentManagement'
@@ -286,7 +289,7 @@ export const constantRoutes = [{
   {
     path: 'buildToolBack-end',
     name: 'BuildToolBack-end',
-    component: () => import('@/views/back-end/buildTool/index'),
+    component: getNav(),
     meta: {
       title: '后端-构建工具',
       icon: 'buildTool'
@@ -296,7 +299,7 @@ export const constantRoutes = [{
     path: '/back-end/iframeNav',
     name: 'backIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -317,7 +320,7 @@ export const constantRoutes = [{
   children: [{
     path: 'recommendationDesign',
     name: 'RecommendationDesign',
-    component: () => import('@/views/design/recommendation/index'),
+    component: getNav(),
     meta: {
       title: '设计-热门推荐',
       icon: 'recommendation'
@@ -326,7 +329,7 @@ export const constantRoutes = [{
   {
     path: 'inspiration ',
     name: 'Inspiration',
-    component: () => import('@/views/design/inspiration/index'),
+    component: getNav(),
     meta: {
       title: '设计-灵感采集',
       icon: 'inspiration'
@@ -335,7 +338,7 @@ export const constantRoutes = [{
   {
     path: 'interaction',
     name: 'Interaction',
-    component: () => import('@/views/design/interaction/index'),
+    component: getNav(),
     meta: {
       title: '设计-界面交互',
       icon: 'interaction'
@@ -344,7 +347,7 @@ export const constantRoutes = [{
   {
     path: 'designSpecifications',
     name: 'DesignSpecifications',
-    component: () => import('@/views/design/designSpecifications/index'),
+    component: getNav(),
     meta: {
       title: '设计-设计规范',
       icon: 'designSpecifications'
@@ -353,7 +356,7 @@ export const constantRoutes = [{
   {
     path: 'onlineTools',
     name: 'OnlineTools',
-    component: () => import('@/views/design/onlineTools/index'),
+    component: getNav(),
     meta: {
       title: '设计-在线工具',
       icon: 'onlineTools'
@@ -362,7 +365,7 @@ export const constantRoutes = [{
   {
     path: 'icon',
     name: 'Icon',
-    component: () => import('@/views/design/icon/index'),
+    component: getNav(),
     meta: {
       title: '设计-icon图标',
       icon: 'icon'
@@ -371,7 +374,7 @@ export const constantRoutes = [{
   {
     path: 'designMaterial',
     name: 'DesignMaterial',
-    component: () => import('@/views/design/designMaterial/index'),
+    component: getNav(),
     meta: {
       title: '设计-设计素材',
       icon: 'designMaterial'
@@ -380,7 +383,7 @@ export const constantRoutes = [{
   {
     path: 'galleryMaterial',
     name: 'GalleryMaterial',
-    component: () => import('@/views/design/galleryMaterial/index'),
+    component: getNav(),
     meta: {
       title: '设计-图库素材',
       icon: 'galleryMaterial'
@@ -389,7 +392,7 @@ export const constantRoutes = [{
   {
     path: 'colourAssortment',
     name: 'ColourAssortment',
-    component: () => import('@/views/design/colourAssortment/index'),
+    component: getNav(),
     meta: {
       title: '设计-颜色搭配',
       icon: 'colourAssortment'
@@ -398,7 +401,7 @@ export const constantRoutes = [{
   {
     path: 'fontGlyph',
     name: 'FontGlyph',
-    component: () => import('@/views/design/fontGlyph/index'),
+    component: getNav(),
     meta: {
       title: '设计-字体字形',
       icon: 'fontGlyph'
@@ -407,7 +410,7 @@ export const constantRoutes = [{
   {
     path: 'learningTutorial',
     name: 'LearningTutorial',
-    component: () => import('@/views/design/learningTutorial/index'),
+    component: getNav(),
     meta: {
       title: '设计-学习教程',
       icon: 'learningTutorial'
@@ -416,7 +419,7 @@ export const constantRoutes = [{
   {
     path: 'designTeam',
     name: 'DesignTeam',
-    component: () => import('@/views/design/designTeam/index'),
+    component: getNav(),
     meta: {
       title: '设计-设计团队',
       icon: 'designTeam'
@@ -426,7 +429,7 @@ export const constantRoutes = [{
     path: '/design/iframeNav',
     name: 'designIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -447,7 +450,7 @@ export const constantRoutes = [{
   children: [{
     path: 'recommendationProduct',
     name: 'RecommendationProduct',
-    component: () => import('@/views/product/recommendation/index'),
+    component: getNav(),
     meta: {
       title: '产品-热门推荐',
       icon: 'recommendation'
@@ -456,7 +459,7 @@ export const constantRoutes = [{
   {
     path: 'productInformation ',
     name: 'ProductInformation',
-    component: () => import('@/views/product/productInformation/index'),
+    component: getNav(),
     meta: {
       title: '产品-产品资讯',
       icon: 'productInformation'
@@ -465,7 +468,7 @@ export const constantRoutes = [{
   {
     path: 'prototypeTool',
     name: 'PrototypeTool',
-    component: () => import('@/views/product/prototypeTool/index'),
+    component: getNav(),
     meta: {
       title: '产品-原型工具',
       icon: 'prototypeTool'
@@ -474,7 +477,7 @@ export const constantRoutes = [{
   {
     path: 'mindMap',
     name: 'MindMap',
-    component: () => import('@/views/product/mindMap/index'),
+    component: getNav(),
     meta: {
       title: '产品-思维导图',
       icon: 'mindMap'
@@ -483,7 +486,7 @@ export const constantRoutes = [{
   {
     path: 'teamwork',
     name: 'Teamwork',
-    component: () => import('@/views/product/teamwork/index'),
+    component: getNav(),
     meta: {
       title: '产品-协同工作',
       icon: 'teamwork'
@@ -492,7 +495,7 @@ export const constantRoutes = [{
   {
     path: 'documentEditing',
     name: 'DocumentEditing',
-    component: () => import('@/views/product/documentEditing/index'),
+    component: getNav(),
     meta: {
       title: '产品-文档编辑',
       icon: 'documentEditing'
@@ -501,7 +504,7 @@ export const constantRoutes = [{
   {
     path: 'diskStorage',
     name: 'DiskStorage',
-    component: () => import('@/views/product/diskStorage/index'),
+    component: getNav(),
     meta: {
       title: '产品-云盘储存',
       icon: 'diskStorage'
@@ -510,7 +513,7 @@ export const constantRoutes = [{
   {
     path: 'interestingProducts',
     name: 'InterestingProducts',
-    component: () => import('@/views/product/interestingProducts/index'),
+    component: getNav(),
     meta: {
       title: '产品-趣味产品',
       icon: 'interestingProducts'
@@ -520,7 +523,7 @@ export const constantRoutes = [{
     path: '/product/iframeNav',
     name: 'productIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -541,7 +544,7 @@ export const constantRoutes = [{
   children: [{
     path: 'domainName',
     name: 'DomainName',
-    component: () => import('@/views/operate/domainName/index'),
+    component: getNav(),
     meta: {
       title: '运营-域名注册',
       icon: 'domainName'
@@ -550,7 +553,7 @@ export const constantRoutes = [{
   {
     path: 'dataAnalysis ',
     name: 'DataAnalysis',
-    component: () => import('@/views/operate/dataAnalysis/index'),
+    component: getNav(),
     meta: {
       title: '运营-数据分析',
       icon: 'dataAnalysis'
@@ -559,7 +562,7 @@ export const constantRoutes = [{
   {
     path: 'dataTools',
     name: 'DataTools',
-    component: () => import('@/views/operate/dataTools/index'),
+    component: getNav(),
     meta: {
       title: '运营-数据工具',
       icon: 'dataTools'
@@ -568,7 +571,7 @@ export const constantRoutes = [{
   {
     path: 'dataCollection',
     name: 'DataCollection',
-    component: () => import('@/views/operate/dataCollection/index'),
+    component: getNav(),
     meta: {
       title: '运营-数据收集',
       icon: 'dataCollection'
@@ -577,7 +580,7 @@ export const constantRoutes = [{
   {
     path: 'mediaPlatform',
     name: 'MediaPlatform',
-    component: () => import('@/views/operate/mediaPlatform/index'),
+    component: getNav(),
     meta: {
       title: '运营-新媒平台',
       icon: 'mediaPlatform'
@@ -586,7 +589,7 @@ export const constantRoutes = [{
   {
     path: 'mediaTools',
     name: 'MediaTools',
-    component: () => import('@/views/operate/mediaTools/index'),
+    component: getNav(),
     meta: {
       title: '运营-新媒工具',
       icon: 'mediaTools'
@@ -595,7 +598,7 @@ export const constantRoutes = [{
   {
     path: 'websiteInclusion',
     name: 'WebsiteInclusion',
-    component: () => import('@/views/operate/websiteInclusion/index'),
+    component: getNav(),
     meta: {
       title: '运营-网站收录',
       icon: 'websiteInclusion'
@@ -604,7 +607,7 @@ export const constantRoutes = [{
   {
     path: 'ASOOptimization',
     name: 'ASOOptimization',
-    component: () => import('@/views/operate/ASOOptimization/index'),
+    component: getNav(),
     meta: {
       title: '运营-ASO优化',
       icon: 'ASOOptimization'
@@ -614,7 +617,7 @@ export const constantRoutes = [{
     path: '/operate/iframeNav',
     name: 'operateIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -635,7 +638,7 @@ export const constantRoutes = [{
   children: [{
     path: 'recruitmentPlatform',
     name: 'RecruitmentPlatform',
-    component: () => import('@/views/jobs/recruitmentPlatform/index'),
+    component: getNav(),
     meta: {
       title: '工作-招聘平台',
       icon: 'recruitmentPlatform'
@@ -644,7 +647,7 @@ export const constantRoutes = [{
   {
     path: 'partTimeProgram',
     name: 'PartTimeProgram',
-    component: () => import('@/views/jobs/partTimeProgram/index'),
+    component: getNav(),
     meta: {
       title: '工作-程序兼职',
       icon: 'partTimeProgram'
@@ -653,7 +656,7 @@ export const constantRoutes = [{
   {
     path: 'partTimeDesign',
     name: 'PartTimeDesign',
-    component: () => import('@/views/jobs/partTimeDesign/index'),
+    component: getNav(),
     meta: {
       title: '工作-设计兼职',
       icon: 'partTimeDesign'
@@ -663,7 +666,7 @@ export const constantRoutes = [{
     path: '/jobs/iframeNav',
     name: 'jobsIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -684,7 +687,7 @@ export const constantRoutes = [{
   children: [{
     path: 'developmentHardware',
     name: 'DevelopmentHardware',
-    component: () => import('@/views/geeks/developmentHardware/index'),
+    component: getNav(),
     meta: {
       title: '极客-开发硬件',
       icon: 'developmentHardware'
@@ -693,7 +696,7 @@ export const constantRoutes = [{
   {
     path: 'hardwareSystem',
     name: 'HardwareSystem',
-    component: () => import('@/views/geeks/hardwareSystem/index'),
+    component: getNav(),
     meta: {
       title: '极客-硬件系统',
       icon: 'hardwareSystem'
@@ -702,7 +705,7 @@ export const constantRoutes = [{
   {
     path: 'otherTools',
     name: 'OtherTools',
-    component: () => import('@/views/geeks/otherTools/index'),
+    component: getNav(),
     meta: {
       title: '极客-其他工具',
       icon: 'otherTools'
@@ -711,7 +714,7 @@ export const constantRoutes = [{
   {
     path: 'informationInquiry',
     name: 'InformationInquiry',
-    component: () => import('@/views/geeks/informationInquiry/index'),
+    component: getNav(),
     meta: {
       title: '极客-信息查询',
       icon: 'informationInquiry'
@@ -720,7 +723,7 @@ export const constantRoutes = [{
   {
     path: 'gameSystem',
     name: 'GameSystem',
-    component: () => import('@/views/geeks/gameSystem/index'),
+    component: getNav(),
     meta: {
       title: '极客-游戏系统',
       icon: 'gameSystem'
@@ -730,7 +733,7 @@ export const constantRoutes = [{
     path: '/geeks/iframeNav',
     name: 'geeksIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -746,7 +749,7 @@ export const constantRoutes = [{
   children: [{
     path: 'submit',
     name: 'Submit',
-    component: () => import('@/views/submit/index'),
+    component: () => import('@/page/submit/index'),
     meta: {
       title: '操作',
       icon: 'submit'
@@ -767,7 +770,7 @@ export const constantRoutes = [{
   children: [{
     path: 'interactive',
     name: 'Interactive',
-    component: () => import('@/views/superAdmin/interactive/index'),
+    component: () => import('@/page/superAdmin/interactive/index'),
     meta: {
       title: '超管-交互',
       icon: 'interactive'
@@ -776,7 +779,7 @@ export const constantRoutes = [{
   {
     path: 'handle',
     name: 'Handle',
-    component: () => import('@/views/superAdmin/handle/index'),
+    component: () => import('@/page/superAdmin/handle/index'),
     meta: {
       title: '超管-操作',
       icon: 'handle'
@@ -786,7 +789,7 @@ export const constantRoutes = [{
     path: '/superAdmin/iframeNav',
     name: 'superAdminIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'
@@ -813,7 +816,7 @@ export const asyncRoutes = [{
   children: [{
     path: 'interactive',
     name: 'Interactive',
-    component: () => import('@/views/superAdmin/interactive/index'),
+    component: () => import('@/page/superAdmin/interactive/index'),
     meta: {
       title: '超管-交互',
       icon: 'interactive'
@@ -822,7 +825,7 @@ export const asyncRoutes = [{
   {
     path: 'handle',
     name: 'Handle',
-    component: () => import('@/views/superAdmin/handle/index'),
+    component: () => import('@/page/superAdmin/handle/index'),
     meta: {
       title: '超管-操作',
       icon: 'handle'
@@ -832,7 +835,7 @@ export const asyncRoutes = [{
     path: '/superAdmin/iframeNav',
     name: 'superAdminIframeNav',
     hidden: true,
-    component: () => import('@/views/iframeNav/index'),
+    component: () => import('@/page/iframeNav/index'),
     meta: {
       title: '网站',
       icon: 'iframeNav'

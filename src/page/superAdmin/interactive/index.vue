@@ -158,12 +158,6 @@ export default {
       apiAdmin.getMap(this.addQueryData).then(res => {
         this.loading = false
         this.totalAdd = res.total
-        for (let i = 0; i < res.data.length; i++) {
-          console.log(this.reg.test(res.data[i].category))
-          // if(this.reg.test(res.data[i])){
-          //   console.log('dfasdf')
-          // }
-        }
         this.tableAddData = res.data
       })
       apiAdmin.getMap(this.putQueryData).then(res => {

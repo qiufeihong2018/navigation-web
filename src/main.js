@@ -1,27 +1,25 @@
 import Vue from 'vue'
-
-import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
-
+// import enLocale from 'element-ui/lib/locale/lang/en'
+import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
 // set ElementUI lang to EN
 Vue.use(ElementUI, {
-  locale
+  zhLocale
 })
-
+import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import '@/styles/index.scss' // global css
+
+import waterfall from 'vue-waterfall2'
+Vue.use(waterfall)
 
 import App from './App'
 import store from './store'
 import router from './router'
 
-import waterfall from 'vue-waterfall2'
-Vue.use(waterfall)
-// Global registration
-import NavPage from '@/components/NavPage'
-Vue.component('NavPage', NavPage)
+// // Global registration
+// import NavPage from '@/components/NavPage'
+// Vue.component('NavPage', NavPage)
 
 import '@/icons' // icon
 import { permission } from '@/permission'

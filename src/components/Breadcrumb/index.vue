@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb class="app-breadcrumb" separator="/">
+  <el-breadcrumb class="app-breadcrumb" separator=">">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
         <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
@@ -30,6 +30,7 @@ export default {
     getBreadcrumb() {
       // only show routes with meta.title
       const matched = this.$route.matched.filter(item => item.meta && item.meta.title)
+
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
     },
     pathCompile(path) {
@@ -40,6 +41,7 @@ export default {
     },
     handleLink(item) {
       const { redirect, path } = item
+
       if (redirect) {
         this.$router.push(redirect)
         return
@@ -58,7 +60,7 @@ export default {
   margin-left: 8px;
 
   .no-redirect {
-    color: #97a8be;
+    color: #c0c4cc;
     cursor: text;
   }
 }

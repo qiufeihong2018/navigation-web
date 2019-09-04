@@ -16,6 +16,8 @@ English | [简体中文](./README-zh.md)
 
 ## [Backend project](https://github.com/qiufeihong2018/navigation-server)
 
+## [Navigation site collection and navigation platform](https://www.qiufeihong.top/technical-summary/navigation/)
+
 ## Prerequisites
 
 - node >=8.9

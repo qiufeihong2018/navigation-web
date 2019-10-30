@@ -4,7 +4,14 @@
       <div slot="header" class="clearfix">
         <p>提交网站</p>
       </div>
-      <el-form ref="ruleForm" :model="ruleForm" :rules="rules" label-width="100px" class="demo-ruleForm" label-position="left">
+      <el-form
+        ref="ruleForm"
+        :model="ruleForm"
+        :rules="rules"
+        label-width="100px"
+        class="demo-ruleForm"
+        label-position="left"
+      >
         <el-form-item label="网站名称" prop="name">
           <el-input v-model="ruleForm.name" placeholder="例如：navigation-web" />
         </el-form-item>
@@ -39,6 +46,7 @@ import * as apiAdmin from '@/api/admin'
 import {
   getOption
 } from '@/utils/index'
+import html2canvas from 'html2canvas'
 export default {
   name: 'Submit',
   data() {
@@ -74,10 +82,11 @@ export default {
   created() {
     const routes = this.$router.options.routes
     this.categoryOptions = getOption('label', routes)
+    // this.getCanvas()
   },
   methods: {
     submitForm(formName) {
-      console.log(this.ruleForm)
+      // console.log(this.ruleForm)
       this.$refs[formName].validate((valid) => {
         if (valid) {
           if (this.ruleForm.logo === '') {
@@ -97,16 +106,23 @@ export default {
             }
           })
         } else {
-          console.log('error submit!!')
+          // console.log('error submit!!')
           return false
         }
       })
     },
     resetForm(formName) {
       this.$refs[formName].resetFields()
+    },
+    getCanvas() {
+      html2canvas(document.body).then(function(canvas) {
+        console.log(canvas)
+        document.body.appendChild(canvas)
+      })
     }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -120,8 +136,10 @@ export default {
       line-height: 46px;
     }
   }
-  .btn-container{
-    white-space:nowrap;
+
+  .btn-container {
+    white-space: nowrap;
     margin-left: -100px;
   }
+
 </style>

@@ -741,7 +741,45 @@ export const constantRoutes = [{
   }
   ]
 },
-
+{
+  path: '/live',
+  component: Layout,
+  redirect: '/live/webGovernment',
+  name: 'Live',
+  meta: {
+    title: '生活',
+    icon: 'live'
+  },
+  children: [{
+    path: 'webGovernment',
+    name: 'WebGovernment',
+    component: getNav(),
+    meta: {
+      title: '生活-政府网站',
+      icon: 'webGovernment'
+    }
+  },
+  {
+    path: 'freeVideo',
+    name: 'FreeVideo',
+    component: getNav(),
+    meta: {
+      title: '生活-免费影视',
+      icon: 'freeVideo'
+    }
+  },
+  {
+    path: '/live/iframeNav',
+    name: 'liveIframeNav',
+    hidden: true,
+    component: () => import('@/page/iframeNav/index'),
+    meta: {
+      title: '网站',
+      icon: 'iframeNav'
+    }
+  }
+  ]
+},
 {
   path: '/submit',
   component: Layout,

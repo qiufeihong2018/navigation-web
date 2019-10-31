@@ -16,15 +16,30 @@
           <el-input v-model="ruleForm.name" placeholder="例如：navigation-web" />
         </el-form-item>
         <el-form-item label="网站分类" prop="category">
-          <el-select v-model="ruleForm.category" placeholder="请选择网站分类" allow-create filterable default-first-option>
-            <el-option v-for="(item,key) in categoryOptions" :key="key" :label="item.label" :value="item.value" />
+          <el-select
+            v-model="ruleForm.category"
+            :style="selectStyle"
+            placeholder="请选择网站分类"
+            allow-create
+            filterable
+            default-first-option
+          >
+            <el-option
+              v-for="(item,key) in categoryOptions"
+              :key="key"
+              :label="item.label"
+              :value="item.value"
+            />
           </el-select>
         </el-form-item>
         <el-form-item label="网站链接" prop="website">
           <el-input v-model="ruleForm.website" placeholder="例如：http://navigation.qiufeihong.top" />
         </el-form-item>
         <el-form-item label="网站LOGO" prop="logo">
-          <el-input v-model="ruleForm.logo" placeholder="例如：http://navigation.qiufeihong.top/favicon.ico" />
+          <el-input
+            v-model="ruleForm.logo"
+            placeholder="例如：http://navigation.qiufeihong.top/favicon.ico"
+          />
         </el-form-item>
         <el-form-item label="网站描述" prop="describe">
           <el-input v-model="ruleForm.describe" type="textarea" placeholder="例如：一个网站导航和收藏平台（请用中文）" />
@@ -37,16 +52,17 @@
         </el-form-item>
       </el-form>
     </el-card>
-
   </div>
 </template>
 
 <script>
 import * as apiAdmin from '@/api/admin'
-import {
-  getOption
-} from '@/utils/index'
+import { getOption } from '@/utils/index'
 import html2canvas from 'html2canvas'
+import {
+  mapGetters
+} from 'vuex'
+
 export default {
   name: 'Submit',
   data() {
@@ -60,24 +76,51 @@ export default {
         way: 'add'
       },
       rules: {
-        name: [{
-          required: true,
-          message: '请输入网站名称',
-          trigger: 'blur'
-        }],
-        category: [{
-          required: true,
-          message: '请选择网站分类',
-          trigger: 'change'
-        }],
-        website: [{
-          required: true,
-          message: '请输入网站链接',
-          trigger: 'blur'
-        }]
+        name: [
+          {
+            required: true,
+            message: '请输入网站名称',
+            trigger: 'blur'
+          }
+        ],
+        category: [
+          {
+            required: true,
+            message: '请选择网站分类',
+            trigger: 'change'
+          }
+        ],
+        website: [
+          {
+            required: true,
+            message: '请输入网站链接',
+            trigger: 'blur'
+          }
+        ]
       },
       categoryOptions: []
     }
+  },
+  computed: {
+    selectStyle() {
+      if (this.device === 'mobile') {
+        return {
+          width: '173px'
+        }
+      }
+      if (this.sidebar.opened === true) {
+        return {
+          width: '1451px'
+        }
+      }
+      return {
+        width: '1647px'
+      }
+    },
+    ...mapGetters([
+      'sidebar',
+      'device'
+    ])
   },
   created() {
     const routes = this.$router.options.routes
@@ -87,7 +130,7 @@ export default {
   methods: {
     submitForm(formName) {
       // console.log(this.ruleForm)
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
           if (this.ruleForm.logo === '') {
             this.ruleForm.logo = 'http://navigation.qiufeihong.top/favicon.ico'
@@ -122,24 +165,23 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
-  .submit {
-    &-container {
-      margin: 30px;
-    }
-
-    &-text {
-      font-size: 30px;
-      line-height: 46px;
-    }
+.submit {
+  &-container {
+    margin: 30px;
   }
 
-  .btn-container {
-    white-space: nowrap;
-    margin-left: -100px;
+  &-text {
+    font-size: 30px;
+    line-height: 46px;
   }
+}
+
+.btn-container {
+  white-space: nowrap;
+  margin-left: -100px;
+}
 
 </style>

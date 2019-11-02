@@ -55,7 +55,8 @@
         />
       </div>
     </template>
-    <div v-else>
+    <!-- 图片居中 -->
+    <div v-else style="text-align:center">
       <img src="@/assets/noData.png" style="margin-left: -102px;">
     </div>
     <el-dialog title="编辑网站" :visible.sync="dialogFormVisible">
@@ -144,7 +145,7 @@ export default {
         }
       }
       return {
-        width: '911.5px'
+        width: '917.5px'
       }
     },
     col() {
@@ -194,7 +195,6 @@ export default {
         // })
       })
     },
-
     deleteMap(nav) {
       this.$confirm('此操作将永久删除该网站, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -244,7 +244,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
   .time {
     font-size: 13px;
     color: #999;
@@ -261,8 +261,8 @@ export default {
   }
 
   .image {
-    width: 80px;
-    height: 80px;
+    width: 100%;
+    height: 100%;
     display: block;
   }
 

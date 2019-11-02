@@ -10,11 +10,12 @@
       v-loading.fullscreen.lock="loading"
       :data="tableData"
       stripe
-      style="width: 100%"
+      style="width: 100%;margin-top:10px"
       highlight-current-row
       element-loading-text="别催了，我在加载中"
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
+      border
     >
       <el-table-column type="index" />
       <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip />

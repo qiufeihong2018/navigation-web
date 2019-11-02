@@ -11,6 +11,7 @@
         element-loading-text="别催了，我在加载中"
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(0, 0, 0, 0.8)"
+        border
       >
         <el-table-column type="index" />
         <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip>
@@ -50,7 +51,7 @@
     </div>
     <div class="nav-container">
       <H3>修改的网站</H3>
-      <el-table :data="tablePutData" stripe style="width: 100%" highlight-current-row>
+      <el-table :data="tablePutData" stripe style="width: 100%" highlight-current-row border>
         <el-table-column type="index" />
         <el-table-column prop="category" label="分类" width="200" show-overflow-tooltip>
           <template slot-scope="scope">
@@ -127,12 +128,14 @@ export default {
         if (res.state === 'ok') {
           this.$notify.success({
             title: '成功',
-            message: `编辑网站《${form.name}》成功！`
+            message: `编辑网站《${form.name}》成功！`,
+            duration: '500'
           })
         } else {
           this.$notify.error({
             title: '失败',
-            message: `编辑网站《${form.name}》失败！`
+            message: `编辑网站《${form.name}》失败！`,
+            duration: '500'
           })
         }
         this.getMap()
@@ -143,12 +146,14 @@ export default {
         if (res.state === 'ok') {
           this.$notify.success({
             title: '成功',
-            message: `添加网站《${nav.name}》成功`
+            message: `添加网站《${nav.name}》成功`,
+            duration: '500'
           })
         } else {
           this.$notify.error({
             title: '失败',
-            message: `添加网站《${nav.name}》失败`
+            message: `添加网站《${nav.name}》失败`,
+            duration: '500'
           })
         }
         this.getMap()
@@ -171,12 +176,14 @@ export default {
         if (res.state === 'ok') {
           this.$notify.success({
             title: '成功',
-            message: `${tag}网站《${nav.name}》取消！`
+            message: `${tag}网站《${nav.name}》取消！`,
+            duration: '500'
           })
         } else {
           this.$notify.error({
             title: '失败',
-            message: `取消网站《${nav.name}》失败！`
+            message: `取消网站《${nav.name}》失败！`,
+            duration: '500'
           })
         }
         this.getMap()

@@ -12,7 +12,7 @@
 
 简体中文 | [English](./README.md)
 
-### 🏠 [首页](http://navigation.qiufeihong.top)
+### 🏠  ~~[http://navigation.qiufeihong.top](http://navigation.qiufeihong.top)~~
 
 ## [后端项目](https://github.com/qiufeihong2018/navigation-server)
 
@@ -62,7 +62,7 @@ npm run dev
 
 ## 在线Demo
 
-[预览](http://navigation.qiufeihong.top)
+ ~~[http://navigation.qiufeihong.top](http://navigation.qiufeihong.top)~~
 
 ## 显示您的支持
 
